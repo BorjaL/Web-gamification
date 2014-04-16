@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="gamenhancy">
+  <head>
+    <link rel="stylesheet" href="../css/bootstrap.css" media="screen">
+  </head>
+  <body ng-controller="mainController">
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gamotive</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+          <div class="well well-lg">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Inserta una tarea nueva" ng-model="gameData.name">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary center-block" ng-click="createGame()">Crear Juego</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/lib/angular.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
