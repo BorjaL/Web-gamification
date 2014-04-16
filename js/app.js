@@ -1,4 +1,4 @@
-var gamenhancy = angular.module('gamenhancy', []);
+angular.module('gamis', ['gamis.controllers']);
 
 function mainController($scope, $http) {
 
