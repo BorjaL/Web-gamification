@@ -1,15 +1,25 @@
-angular.module('gamis', ['gamis.controllers']);
+var gamis = angular.module('gamis', ['gamis.controllers', 'ngRoute', 'ngResource']);
 
-function mainController($scope, $http) {
+gamis.factory("Game", function ($resource) {
+    return $resource(
+        "http://127.0.0.1:3000/game",
+        {Id: "@Id" },
+        {
+            "update": {method: "PUT"},
+            "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true}
+ 
+        }
+    );
+});
 
-    $scope.createGame = function(){
-    	$http.post('http://127.0.0.1:3000/game', $scope.gameData)
-            .success(function(data) {
-                $scope.gameData = {};
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error:' + data);
-            });
-    };
-}
+gamis.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+        when('/task-list/:game_id', {
+            templateUrl: 'partials/task-list.html',
+            controller: 'createGameCtrl'
+        }).
+        otherwise({
+            redirectTo: '/phones'
+        });
+    }]);
