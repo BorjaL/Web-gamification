@@ -1,0 +1,13 @@
+{
+  "name": "Web-gamification",
+  "version": "0.0.1",
+  "description": "web app for the gamification platform",
+  "author": {
+    "name": "Borja Fernandez",
+    "email": "borja.fpillado@gmail.com"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-serve": "~0.1.6"
+  }
+}
