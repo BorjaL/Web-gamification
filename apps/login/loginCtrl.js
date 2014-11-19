@@ -1,16 +1,23 @@
-angular.module('login').controller('loginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window){
+angular.module('login').controller('loginCtrl', ['$scope', 'loginFactory', function($scope, loginFactory){
 
-    $scope.login_data;
+    $scope.login_data = {username: "", password: ""};
+    $scope.login_button_text = "Log in";
+    $scope.show_error = false;
 
-	$scope.login = function(){
-    	$http.post('http://localhost:3023/players/login.json', $scope.login_data)
-            .success(function(data) {
-                $window.location.href = "/game/index.html";
-                //$location.url("/task-list/"+data._id);
-                
-            })
-            .error(function(error) {
-                console.log('Error:' + error);
-            });
-	};
+	$scope.logIn = function(login_data){
+        loginFactory.login(login_data, function(error, message){
+            if (error){
+                set_form_after_error(error);
+            }
+            else{
+                set_form_after_error(message);
+            }
+        });
+    }
+
+    var set_form_after_error = function(message){
+        $scope.login_data.password = "";
+        $scope.show_error = true;
+        $scope.message = message;
+    }
 }]);
