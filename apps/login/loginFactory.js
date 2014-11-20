@@ -1,5 +1,5 @@
 angular.module('login').factory('loginFactory', function ($http, $window){
-	var service = {}
+	var service = {};
 
 	service.login = function(login_data, callback){
 		if (!validate_params(login_data)){
@@ -17,11 +17,11 @@ angular.module('login').factory('loginFactory', function ($http, $window){
             .error(function(error) {
                 return callback("Ups! Something goes wrong... Let me check it out, refresh and try it again");
             });
-	}
+	};
 
 	var validate_params = function (login_data){
 		return login_data.username && login_data.password;
-	}
+	};
 
 	return service;
-})
+});
