@@ -8,7 +8,8 @@ angular.module('login').factory('loginFactory', function ($http, $window){
 		$http.post('http://localhost:3023/players/login.json', login_data)
 			.success(function(data) {
 				if (data.success){
-					$window.location.href = "/game/index.html";
+					$window.localStorage.setItem('my-storage', data.player);
+					service.navigate("/user/index.html");
 				}
 				else{
 					return callback(null, data.message);
@@ -22,6 +23,10 @@ angular.module('login').factory('loginFactory', function ($http, $window){
 	var validate_params = function (login_data){
 		return login_data.username && login_data.password;
 	};
+
+	service.navigate = function (path){
+		$window.location.href = path;
+	}
 
 	return service;
 });
