@@ -33,14 +33,13 @@ describe('Login ', function () {
 
   describe('Factory', function () {
 
-    var loginFactory, httpBackend, $window;
+    var httpBackend, loginFactory, window;
 
-    beforeEach(inject(function (_$window_, $httpBackend, _loginFactory_) {
-        //given:
-        $window = _$window_;
-        loginFactory = _loginFactory_;      
-        httpBackend = $httpBackend;
-        $window.location.href = { href: sinon.spy()}
+    beforeEach(inject(function ($window, $httpBackend, _loginFactory_) {
+      window = $window;
+      loginFactory = _loginFactory_;
+      httpBackend = $httpBackend;
+      loginFactory.navigate = sinon.spy();
     }));
 
     afterEach(function() {
@@ -48,19 +47,19 @@ describe('Login ', function () {
       httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('login calls to the server and the user is logged', function(){
-
-      var result;
-      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({success: true});
+    it('login function save the token and redirect to the user page', function(){
+      
+      //given:
+      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token'});
 
       //when:
-      loginFactory.login({username:"Stark", password:"S3Cr3T"}, function(error, message){
-        //then:
-        expect(window.location.href).calledWith('/game/index.html');
-        //expect(message).to.equal('bar');
-      });
+      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
+
       httpBackend.flush();
 
+      //then:
+      expect(window.localStorage.getItem('my-storage')).to.equal('token');
+      sinon.assert.calledWith(loginFactory.navigate, "/apps/user_profile/index.html");
     });
   });
 });

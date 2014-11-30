@@ -1,11 +1,13 @@
-angular.module('login').factory('loginFactory', function ($http, $window){
+angular.module('register').factory('registerFactory', function ($http, $window){
+
 	var service = {};
 
-	service.login = function(login_data, callback){
-		if (!service.validate_params(login_data)){
-			return callback(null, "Wrong credentials");
+	service.register = function(register_data, callback){
+
+		if (!service.validate_params(register_data)){
+			return callback(null, "Wrong fields");
 		}
-		$http.post('http://localhost:3023/players/login.json', login_data)
+		$http.post('http://localhost:3023/players.json', register_data)
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('my-storage', data.token);
@@ -20,13 +22,9 @@ angular.module('login').factory('loginFactory', function ($http, $window){
             });
 	};
 
-	service.validate_params = function (login_data){
-		return login_data.username && login_data.password;
+	service.validate_params = function (register_data){
+		return register_data.username !== null && register_data.password !== null;
 	};
-
-	service.navigate = function (path){
-		$window.location.href = path;
-	}
 
 	return service;
 });
