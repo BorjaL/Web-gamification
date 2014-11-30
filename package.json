@@ -17,6 +17,7 @@
     "sinon": "~1.12.1",
     "chai": "~1.10.0",
     "karma-sinon-chai": "~0.2.0",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "karma-phantomjs-launcher": "~0.1.4"
   }
 }
