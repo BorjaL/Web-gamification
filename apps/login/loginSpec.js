@@ -48,21 +48,18 @@ describe('Login Functionality', function () {
     });
 
     it('login function save the token and redirect to the user page', function(){
+      
       //given:
-      var message;
+      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token'});
 
       //when:
-      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({success: 'Something goes wrong', player: 'token'});
-
-      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
-        message = _message;
-      });
+      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
 
       httpBackend.flush();
 
       //then:
       expect(window.localStorage.getItem('my-storage')).to.equal('token');
-      sinon.assert.calledWith(loginFactory.navigate, "/user/index.html");
+      sinon.assert.calledWith(loginFactory.navigate, "/apps/user_profile/index.html");
     });
   });
 });

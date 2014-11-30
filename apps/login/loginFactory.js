@@ -2,14 +2,14 @@ angular.module('login').factory('loginFactory', function ($http, $window){
 	var service = {};
 
 	service.login = function(login_data, callback){
-		if (!validate_params(login_data)){
+		if (!service.validate_params(login_data)){
 			return callback(null, "Wrong credentials");
 		}
 		$http.post('http://localhost:3023/players/login.json', login_data)
 			.success(function(data) {
-				if (data.success){
-					$window.localStorage.setItem('my-storage', data.player);
-					service.navigate("/user/index.html");
+				if (data.token){
+					$window.localStorage.setItem('my-storage', data.token);
+					service.navigate("/apps/user_profile/index.html");
 				}
 				else{
 					return callback(null, data.message);
@@ -20,7 +20,7 @@ angular.module('login').factory('loginFactory', function ($http, $window){
             });
 	};
 
-	var validate_params = function (login_data){
+	service.validate_params = function (login_data){
 		return login_data.username && login_data.password;
 	};
 
