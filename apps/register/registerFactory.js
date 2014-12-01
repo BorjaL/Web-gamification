@@ -26,5 +26,9 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 		return register_data.username !== null && register_data.password !== null;
 	};
 
+	service.navigate = function (path){
+		$window.location.href = path;
+	};
+
 	return service;
 }]);
