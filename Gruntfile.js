@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 	    		expr: true
 	    	},
 	    	files: {
-	    		src: ['apps/**/!(*Spec).js']
+	    		src: ['apps/**/!(*Spec).js', 'Gruntfile.js']
 		  	},
 		},
 		uglify: {
