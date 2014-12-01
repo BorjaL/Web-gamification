@@ -1,4 +1,4 @@
-angular.module('login').controller('loginCtrl', ['$scope', 'loginFactory', function($scope, loginFactory){
+login_module.controller('loginCtrl', ['$scope', 'loginFactory', function($scope, loginFactory){
 
     $scope.login_data = {username: "", password: ""};
     $scope.show_error = false;

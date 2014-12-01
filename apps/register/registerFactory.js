@@ -1,4 +1,4 @@
-angular.module('register').factory('registerFactory', function ($http, $window){
+register_module.factory('registerFactory', ["$http", "$window", function ($http, $window){
 
 	var service = {};
 
@@ -27,4 +27,4 @@ angular.module('register').factory('registerFactory', function ($http, $window){
 	};
 
 	return service;
-});
+}]);

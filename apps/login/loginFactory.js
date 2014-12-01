@@ -1,4 +1,4 @@
-angular.module('login').factory('loginFactory', function ($http, $window){
+login_module.factory('loginFactory',["$http", "$window", function ($http, $window){
 	var service = {};
 
 	service.login = function(login_data, callback){
@@ -26,7 +26,7 @@ angular.module('login').factory('loginFactory', function ($http, $window){
 
 	service.navigate = function (path){
 		$window.location.href = path;
-	}
+	};
 
 	return service;
-});
+}]);
