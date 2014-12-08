@@ -8,7 +8,7 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 		$http.post('http://localhost:3023/players/login.json', login_data)
 			.success(function(data) {
 				if (data.token){
-					$window.localStorage.setItem('my-storage', data.token);
+					$window.localStorage.setItem('user_token', data.token);
 					service.navigate("/apps/userProfile/index.html");
 				}
 				else{

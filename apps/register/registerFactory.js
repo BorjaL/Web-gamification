@@ -10,7 +10,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 		$http.post('http://localhost:3023/players.json', register_data)
 			.success(function(data) {
 				if (data.token){
-					$window.localStorage.setItem('my-storage', data.token);
+					$window.localStorage.setItem('user_token', data.token);
 					service.navigate("/apps/userProfile/index.html");
 				}
 				else{

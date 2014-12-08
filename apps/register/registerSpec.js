@@ -53,7 +53,7 @@ describe('Register Functionality', function () {
       httpBackend.flush();
 
       //then:
-      expect(window.localStorage.getItem('my-storage')).to.equal('token');
+      expect(window.localStorage.getItem('user_token')).to.equal('token');
       sinon.assert.calledWith(registerFactory.navigate, "/apps/userProfile/index.html");
     });
 
