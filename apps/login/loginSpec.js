@@ -59,7 +59,7 @@ describe('Login ', function () {
 
       //then:
       expect(window.localStorage.getItem('my-storage')).to.equal('token');
-      sinon.assert.calledWith(loginFactory.navigate, "/apps/user_profile/index.html");
+      sinon.assert.calledWith(loginFactory.navigate, "/apps/userProfile/index.html");
     });
   });
 });

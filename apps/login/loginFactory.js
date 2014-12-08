@@ -9,7 +9,7 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('my-storage', data.token);
-					service.navigate("/apps/user_profile/index.html");
+					service.navigate("/apps/userProfile/index.html");
 				}
 				else{
 					return callback(null, data.message);

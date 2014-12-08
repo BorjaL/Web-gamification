@@ -54,7 +54,7 @@ describe('Register Functionality', function () {
 
       //then:
       expect(window.localStorage.getItem('my-storage')).to.equal('token');
-      sinon.assert.calledWith(registerFactory.navigate, "/apps/user_profile/index.html");
+      sinon.assert.calledWith(registerFactory.navigate, "/apps/userProfile/index.html");
     });
 
     it('a user can not register because of miss some field', function(){
