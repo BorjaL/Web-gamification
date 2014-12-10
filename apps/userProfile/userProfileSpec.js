@@ -46,6 +46,7 @@ describe('User profile ', function () {
       window = $window;
       userProfileFactory = _userProfileFactory_;
       httpBackend = $httpBackend;
+      userProfileFactory.redirectToLogin = sinon.spy();
     }));
 
     afterEach(function() {
@@ -53,6 +54,42 @@ describe('User profile ', function () {
       httpBackend.verifyNoOutstandingRequest();
     });
 
+    it('test if there are a token in the local storage', function(){
+      //given:
+      window.localStorage.setItem('user_token', 'token');
+
+      //when:
+      var has_token = userProfileFactory.hasToken();
+
+      //then:
+      has_token.should.to.be.true;
+    });
+
+    it('the user info is given from the server', function(){
+      //given:
+      httpBackend.expectGET('http://localhost:3023/players.json').respond({username: 'username'});
+
+      //when:
+      userProfileFactory.userInfo(function(error, user_info){
+        //then:
+        assert(user_info.username === "username")
+      });
+      httpBackend.flush();
+
+      
+    });
+
+    it('redirect to the login page when there is no permissions', function(){
+      //given:
+      httpBackend.expectGET('http://localhost:3023/players.json').respond(403);
+
+      //when:
+      var user_info = userProfileFactory.userInfo({token: 'token'}, function(error, _message){});
+      httpBackend.flush();
+
+      //then:
+      userProfileFactory.redirectToLogin.should.have.been.calledOnce;
+    });
     
   });
 });

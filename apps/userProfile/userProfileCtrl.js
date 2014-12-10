@@ -3,13 +3,8 @@ user_profile_module.controller('userProfileCtrl', ['$scope', 'userProfileFactory
 
 	$scope.initUserInfo = function(){
         if (userProfileFactory.hasToken()){
-            userProfileFactory.userInfo(function(error, message){
-                if (error){
-                    
-                }
-                else{
-                   
-                }
+            userProfileFactory.userInfo(function(error, user_info){
+                $scope.user_info = user_info;
             });
         }
         else{
