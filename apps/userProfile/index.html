@@ -1,9 +1,9 @@
 <!doctype html>
-<html ng-app="login">
+<html ng-app="userProfile">
   <head>
     <link rel="stylesheet" href="/css/bootstrap.css" media="screen">
   </head>
-  <body ng-controller="loginCtrl">
+  <body ng-controller="userProfileCtrl">
     <div class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -18,10 +18,12 @@
     </div>
     <div class="container">
       <div class="row">
+        Hola {{user_info}}
         <script>console.log(window.localStorage.getItem('user_token'))</script>
       </div>
     </div>
 
     <script src="/lib/angular/angular.min.js"></script>
+    <script src="/build/userProfile.js"></script>
   </body>
 </html>

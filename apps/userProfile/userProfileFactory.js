@@ -3,9 +3,9 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", function 
 	var service = {};
 
 	service.userInfo = function(callback){
-		var result;
+		var user_id = $window.localStorage.getItem('user_id');
 
-		$http.get('http://localhost:3023/players.json', {token: "token"})
+		$http.get('http://localhost:3023/players/' + user_id, {token: "token"})
 			.success(function(data) {
 				callback(null,data);
             })
