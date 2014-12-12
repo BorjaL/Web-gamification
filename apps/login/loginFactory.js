@@ -9,13 +9,17 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
+					$window.localStorage.setItem('user_id', data.username);
 					service.navigate("/apps/userProfile/index.html");
 				}
 				else{
 					return callback(null, data.message);
 				}
             })
-            .error(function(error) {
+            .error(function(error, status) {
+            	if (status === 403){
+            		return callback(null, "Wrong credentials");
+            	}
                 return callback("Ups! Something goes wrong... Let me check it out, refresh and try it again");
             });
 	};

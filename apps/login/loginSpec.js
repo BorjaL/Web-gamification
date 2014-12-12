@@ -50,7 +50,7 @@ describe('Login ', function () {
     it('login function save the token and redirect to the user page', function(){
       
       //given:
-      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token'});
+      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token', username: "username"});
 
       //when:
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -59,6 +59,7 @@ describe('Login ', function () {
 
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
+      expect(window.localStorage.getItem('user_id')).to.equal('username');
       sinon.assert.calledWith(loginFactory.navigate, "/apps/userProfile/index.html");
     });
   });
