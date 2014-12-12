@@ -45,6 +45,7 @@ module.exports = function(grunt) {
 				files: {
 					'build/login.js': ['apps/login/**/*.js', '!apps/login/**/*Spec.js'],
 					'build/register.js': ['apps/register/**/*.js', '!apps/register/**/*Spec.js'],
+					'build/userProfile.js': ['apps/userProfile/**/*.js', '!apps/userProfile/**/*Spec.js'],
 				},
 			},
 		},
