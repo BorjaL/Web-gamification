@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="row">
+      <div class="row" ng-init="initUserInfo()">
         Hola {{user_info}}
         <script>console.log(window.localStorage.getItem('user_token'))</script>
       </div>

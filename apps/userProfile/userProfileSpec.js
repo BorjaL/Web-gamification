@@ -1,6 +1,6 @@
 describe('User profile ', function () {
 
-  beforeEach(module('user_profile'));
+  beforeEach(module('userProfile'));
 
   describe('Controller', function () {
 
@@ -8,7 +8,7 @@ describe('User profile ', function () {
 
     beforeEach(inject(function ($controller, $rootScope) {
       //given:
-      userProfileFactoryMock = {userInfo: sinon.spy(), redirectToLogin: sinon.spy()};
+      userProfileFactoryMock = {userInfo: sinon.spy(), redirectToLogin: sinon.spy(), hasToken: sinon.spy()};
       scope = $rootScope.$new();
       userProfileCtrl = $controller('userProfileCtrl', {
         $scope: scope, userProfileFactory: userProfileFactoryMock
@@ -20,7 +20,7 @@ describe('User profile ', function () {
       userProfileFactoryMock.hasToken = sinon.stub().returns(true);
 
       //when:
-      scope.initUserInfo({});
+      scope.initUserInfo();
 
       //then:
       userProfileFactoryMock.userInfo.should.have.been.calledOnce;
@@ -31,7 +31,7 @@ describe('User profile ', function () {
       userProfileFactoryMock.hasToken = sinon.stub().returns(false);
 
       //when:
-      scope.initUserInfo({});
+      scope.initUserInfo();
 
       //then:
       userProfileFactoryMock.redirectToLogin.should.have.been.calledOnce;
@@ -67,7 +67,8 @@ describe('User profile ', function () {
 
     it('the user info is given from the server', function(){
       //given:
-      httpBackend.expectGET('http://localhost:3023/players.json').respond({username: 'username'});
+      window.localStorage.setItem('user_id', 'username');
+      httpBackend.expectGET('http://localhost:3023/players/username').respond({username: 'username'});
 
       //when:
       userProfileFactory.userInfo(function(error, user_info){
@@ -81,7 +82,8 @@ describe('User profile ', function () {
 
     it('redirect to the login page when there is no permissions', function(){
       //given:
-      httpBackend.expectGET('http://localhost:3023/players.json').respond(403);
+      window.localStorage.setItem('user_id', 'username');
+      httpBackend.expectGET('http://localhost:3023/players/username').respond(403);
 
       //when:
       var user_info = userProfileFactory.userInfo({token: 'token'}, function(error, _message){});
