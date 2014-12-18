@@ -11,6 +11,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
+					$window.localStorage.setItem('user_id', register_data.username);
 					service.navigate("/apps/userProfile/index.html");
 				}
 				else{
