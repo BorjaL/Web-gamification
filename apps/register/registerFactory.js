@@ -24,7 +24,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 	};
 
 	service.validate_params = function (register_data){
-		return register_data.username !== null && register_data.password !== null;
+		return register_data.username && register_data.password;
 	};
 
 	service.navigate = function (path){
