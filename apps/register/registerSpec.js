@@ -58,6 +58,24 @@ describe('Register Functionality', function () {
       sinon.assert.calledWith(registerFactory.navigate, "/apps/userProfile/index.html");
     });
 
+    it('a user can not register because the username already exists', function(){
+
+      //given:
+      var result = "";
+      httpBackend.expectPOST('http://localhost:3023/players.json')
+                 .respond(function (method, url, data, headers) {
+                    return [409, 'username already exists'];
+                 });
+
+      //when:
+      registerFactory.register({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){result = error});
+
+      httpBackend.flush();
+
+      //then:
+      expect(result).to.equal("This username already exists, please choose another one :)");
+    });
+
     it('a user can not register because of miss some field', function(){
       //given:
       var data = {username: null, password: "S3Cr3T"};
