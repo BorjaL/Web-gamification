@@ -68,7 +68,8 @@ describe('User profile ', function () {
     it('the user info is given from the server', function(){
       //given:
       window.localStorage.setItem('user_id', 'username');
-      httpBackend.expectGET('http://localhost:3023/players/username').respond({username: 'username'});
+      window.localStorage.setItem('user_token', 'token');
+      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond({username: 'username'});
 
       //when:
       userProfileFactory.userInfo(function(error, user_info){
@@ -83,7 +84,8 @@ describe('User profile ', function () {
     it('redirect to the login page when there is no permissions', function(){
       //given:
       window.localStorage.setItem('user_id', 'username');
-      httpBackend.expectGET('http://localhost:3023/players/username').respond(403);
+      window.localStorage.setItem('user_token', 'token');
+      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond(403);
 
       //when:
       var user_info = userProfileFactory.userInfo({token: 'token'}, function(error, _message){});
