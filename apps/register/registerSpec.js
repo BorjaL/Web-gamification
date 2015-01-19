@@ -8,7 +8,7 @@ describe('Register Functionality', function () {
 
     beforeEach(inject(function ($controller, $rootScope) {
       //given:
-      registerFactoryMock = {register: sinon.spy()};
+      registerFactoryMock = {register: sinon.stub().callsArgWith(1, "error" )};
       scope = $rootScope.$new();
       registerCtrl = $controller('registerCtrl', {
         $scope: scope, registerFactory: registerFactoryMock
@@ -28,6 +28,16 @@ describe('Register Functionality', function () {
       expect(scope.register_data.username).to.equal('');
       expect(scope.register_data.password).to.equal('');
       expect(scope.show_error).to.equal(false);
+    });
+
+    it('register data should be empty and show error after an error', function (){
+      //when:
+      scope.register({});
+
+      //then:
+      expect(scope.register_data.username).to.equal('');
+      expect(scope.register_data.password).to.equal('');
+      expect(scope.show_error).to.equal(true);
     });
   });
 

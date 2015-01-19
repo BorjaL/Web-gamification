@@ -8,7 +8,7 @@ describe('Login ', function () {
 
     beforeEach(inject(function ($controller, $rootScope) {
       //given:
-      loginFactoryMock = {login: sinon.spy()};
+      loginFactoryMock = {login: sinon.stub().callsArgWith(1, "error" )};
       scope = $rootScope.$new();
       loginCtrl = $controller('loginCtrl', {
         $scope: scope, loginFactory: loginFactoryMock
@@ -19,6 +19,12 @@ describe('Login ', function () {
       expect(scope.login_data.username).to.equal('');
       expect(scope.login_data.password).to.equal('');
       expect(scope.show_error).to.equal(false);
+    });
+
+    it('login data should be empty and show error is false after an error', function (){
+      expect(scope.login_data.username).to.equal('');
+      expect(scope.login_data.password).to.equal('');
+      expect(scope.show_error).to.equal(true);
     });
 
     it('login calls to the login factory', function(){
