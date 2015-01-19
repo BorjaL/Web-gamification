@@ -15,6 +15,7 @@ login_module.controller('loginCtrl', ['$scope', 'loginFactory', function($scope,
     };
 
     var set_form_after_error = function(message){
+        $scope.login_data.username = "";
         $scope.login_data.password = "";
         $scope.message = message;
         $scope.show_error = true;

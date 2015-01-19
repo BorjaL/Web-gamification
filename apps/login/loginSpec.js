@@ -15,7 +15,7 @@ describe('Login ', function () {
       });
     }));
 
-    it('login data should be empty and show error is false', function (){
+    it('login data should be empty and show error is false in the begining', function (){
       expect(scope.login_data.username).to.equal('');
       expect(scope.login_data.password).to.equal('');
       expect(scope.show_error).to.equal(false);
