@@ -23,6 +23,12 @@ describe('Register Functionality', function () {
       //then:
       registerFactoryMock.register.should.have.been.calledOnce 
     });
+
+    it('register data should be empty and show error is false', function (){
+      expect(scope.register_data.username).to.equal('');
+      expect(scope.register_data.password).to.equal('');
+      expect(scope.show_error).to.equal(false);
+    });
   });
 
 

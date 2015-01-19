@@ -20,7 +20,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
             })
             .error(function(error, status) {
             	if (status === 409){
-            		return callback("This username already exists, please choose another one :)")
+            		return callback("This username already exists, please choose another one :)");
             	}
                 return callback("Ups! Something goes wrong... Let me check it out, refresh and try it again");
             });
