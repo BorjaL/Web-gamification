@@ -62,5 +62,16 @@ describe('Login ', function () {
       expect(window.localStorage.getItem('user_id')).to.equal('username');
       sinon.assert.calledWith(loginFactory.navigate, "/apps/userProfile/index.html");
     });
+
+    it('a user can not login because of miss some field', function(){
+      //given:
+      var data = {username: null, password: "S3Cr3T"};
+
+      //when:
+      var must_to_be_false = loginFactory.validate_params(data);
+
+      //then
+      expect(must_to_be_false).to.be.false;
+    });
   });
 });

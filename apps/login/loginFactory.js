@@ -25,7 +25,9 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 	};
 
 	service.validate_params = function (login_data){
-		return login_data.username && login_data.password;
+		var username_is_empty = login_data.username === undefined || login_data.username === null || login_data.username === '';
+		var password_is_empty = login_data.password === undefined || login_data.password === null || login_data.password === '';  
+		return !username_is_empty && !password_is_empty;
 	};
 
 	service.navigate = function (path){
