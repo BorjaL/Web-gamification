@@ -4,26 +4,14 @@
     <link rel="stylesheet" href="/css/bootstrap.css" media="screen">
   </head>
   <body ng-controller="userProfileCtrl">
-    <div class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Gamotivate</a>
-        </div>
-      </div>
-    </div>
+    <div ng-include='"/templates/header.html"'></div>
     <div class="container">
       <div class="row" ng-init="initUserInfo()">
         <h1>Hola {{user_info}}</h1>
-        <script>console.log(window.localStorage.getItem('user_token'))</script>
       </div>
     </div>
 
-    <script src="/lib/angular/angular.min.js"></script>
-    <script src="/build/userProfile.js"></script>
+    <script src="/script/lib/angular/angular.min.js"></script>
+    <script src="/script/userProfile.js"></script>
   </body>
 </html>

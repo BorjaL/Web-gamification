@@ -1,14 +1,18 @@
 module.exports = function(grunt) {
 
-	grunt.loadNpmTasks('grunt-serve');
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
-	    serve: {
-	        options: {
-	            port: 9000
-	        }
-	    },
+		connect: {
+			server: {
+				options: {
+					host: 'localhost',
+					port: 9000,
+					base: 'app',
+					keepalive: true
+				}
+			}
+		},
 	    karma: {
 	    	unit: {
 	    		configFile: 'test/karma.conf.js',
@@ -30,26 +34,40 @@ module.exports = function(grunt) {
 			all_my_files: {
 				files: [{
 					expand: true,
-					cwd: 'app/',
+					cwd: 'app/script/',
 					src: '**/*.js',
-					dest: 'app/'
+					dest: 'app/script/'
 				}]
 			}
 		},
 		concat: {
 			all_my_files: {
 				files: {
-					'app/login.js': ['src/login/**/*.js', '!src/login/**/*Spec.js'],
-					'app/register.js': ['src/register/**/*.js', '!src/register/**/*Spec.js'],
-					'app/userProfile.js': ['src/userProfile/**/*.js', '!src/userProfile/**/*Spec.js'],
+					'app/script/login.js': ['src/login/**/*.js', '!src/login/**/*Spec.js'],
+					'app/script/register.js': ['src/register/**/*.js', '!src/register/**/*Spec.js'],
+					'app/script/userProfile.js': ['src/userProfile/**/*.js', '!src/userProfile/**/*Spec.js'],
 				},
 			},
 		},
 		copy: {
-			main: {
-				src: 'lib/angular',
-				dest: 'app/script/lib',
+			lib: {
+				src: 'lib/angular/*',
+				dest: 'app/script/',
 			},
+			html: {
+				files: [
+					{expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'app/'},
+				]
+			},
+			templates: {
+				files: [
+					{expand: true, cwd: 'src/', src: ['**/templates/*.html'], dest: 'app/templates', filter: 'isFile', flatten: true},
+				]
+			},
+			css: {
+				src: 'css/*',
+				dest: 'app/',
+			}
 		},
 
 		clean: ["app/"]
@@ -57,8 +75,8 @@ module.exports = function(grunt) {
 	
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
-	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
+	grunt.registerTask('min', ['test', 'jshint', 'clean', 'concat', 'uglify']);
 	grunt.registerTask('build', ['min', 'copy']);
 
-	grunt.registerTask('default', ['build', 'serve']);
+	grunt.registerTask('default', ['build', 'connect']);
 };

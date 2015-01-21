@@ -69,7 +69,7 @@ describe('Login ', function () {
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
       expect(window.localStorage.getItem('user_id')).to.equal('username');
-      sinon.assert.calledWith(loginFactory.navigate, "/apps/userProfile/index.html");
+      sinon.assert.calledWith(loginFactory.navigate, "/userProfile/");
     });
 
     it('a user can not login because of miss some field', function(){

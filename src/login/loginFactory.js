@@ -10,7 +10,7 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
 					$window.localStorage.setItem('user_id', data.username);
-					service.navigate("/apps/userProfile/index.html");
+					service.navigate("/userProfile/");
 				}
 				else{
 					return callback(null, data.message);
