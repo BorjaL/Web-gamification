@@ -22,6 +22,9 @@ describe('Login ', function () {
     });
 
     it('login data should be empty and show error is false after an error', function (){
+      //when:
+      scope.logIn({});
+      
       expect(scope.login_data.username).to.equal('');
       expect(scope.login_data.password).to.equal('');
       expect(scope.show_error).to.equal(true);

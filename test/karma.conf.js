@@ -20,7 +20,7 @@ module.exports = function(config) {
     files: [
         'lib/angular/angular.js',
         'lib/angular-mocks/angular-mocks.js',
-        'apps/**/*.js'
+        'src/**/*.js'
     ],
 
     // list of files / patterns to exclude

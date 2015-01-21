@@ -1,11 +1,7 @@
 module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-serve');
-	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-clean');
+	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 	    serve: {
@@ -27,35 +23,42 @@ module.exports = function(grunt) {
 	    		expr: true
 	    	},
 	    	files: {
-	    		src: ['apps/**/!(*Spec).js', 'Gruntfile.js']
+	    		src: ['src/**/!(*Spec).js', 'Gruntfile.js']
 		  	},
 		},
 		uglify: {
 			all_my_files: {
 				files: [{
 					expand: true,
-					cwd: 'build/',
+					cwd: 'app/',
 					src: '**/*.js',
-					dest: 'build/'
+					dest: 'app/'
 				}]
 			}
 		},
 		concat: {
 			all_my_files: {
 				files: {
-					'build/login.js': ['apps/login/**/*.js', '!apps/login/**/*Spec.js'],
-					'build/register.js': ['apps/register/**/*.js', '!apps/register/**/*Spec.js'],
-					'build/userProfile.js': ['apps/userProfile/**/*.js', '!apps/userProfile/**/*Spec.js'],
+					'app/login.js': ['src/login/**/*.js', '!src/login/**/*Spec.js'],
+					'app/register.js': ['src/register/**/*.js', '!src/register/**/*Spec.js'],
+					'app/userProfile.js': ['src/userProfile/**/*.js', '!src/userProfile/**/*Spec.js'],
 				},
 			},
 		},
+		copy: {
+			main: {
+				src: 'lib/angular',
+				dest: 'app/script/lib',
+			},
+		},
 
-		clean: ["build/"]
+		clean: ["app/"]
 	});
 	
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
+	grunt.registerTask('build', ['min', 'copy']);
 
-	grunt.registerTask('default', ['min', 'serve']);
+	grunt.registerTask('default', ['build', 'serve']);
 };
