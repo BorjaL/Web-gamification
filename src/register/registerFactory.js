@@ -12,7 +12,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
 					$window.localStorage.setItem('user_id', register_data.username);
-					service.navigate("/apps/userProfile/index.html");
+					service.navigate("/userProfile/");
 				}
 				else{
 					return callback(null, data.message);

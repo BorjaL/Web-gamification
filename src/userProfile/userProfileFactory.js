@@ -20,7 +20,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", function 
 	};
 
 	service.redirectToLogin = function(){
-		$window.location.href = "/apps/login/index.html";
+		$window.location.href = "/";
 	};
 
 	return service;

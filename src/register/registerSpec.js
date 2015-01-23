@@ -71,7 +71,7 @@ describe('Register Functionality', function () {
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
       expect(window.localStorage.getItem('user_id')).to.equal('ToniStark');
-      sinon.assert.calledWith(registerFactory.navigate, "/apps/userProfile/index.html");
+      sinon.assert.calledWith(registerFactory.navigate, "/userProfile/");
     });
 
     it('a user can not register because the username already exists', function(){

@@ -81,7 +81,7 @@ describe('User profile ', function () {
       
     });
 
-    it('redirect to the login page when there is no permissions', function(){
+    it('redirect to the main page when there is no permissions', function(){
       //given:
       window.localStorage.setItem('user_id', 'username');
       window.localStorage.setItem('user_token', 'token');

@@ -43,9 +43,7 @@ module.exports = function(grunt) {
 		concat: {
 			all_my_files: {
 				files: {
-					'app/script/login.js': ['src/login/**/*.js', '!src/login/**/*Spec.js'],
-					'app/script/register.js': ['src/register/**/*.js', '!src/register/**/*Spec.js'],
-					'app/script/userProfile.js': ['src/userProfile/**/*.js', '!src/userProfile/**/*Spec.js'],
+					'app/script/app.js': ['src/**/*.js', '!src/**/*Spec.js'],
 				},
 			},
 		},
