@@ -9,7 +9,11 @@ module.exports = function(grunt) {
 					host: 'localhost',
 					port: 9000,
 					base: 'app',
-					keepalive: true
+					keepalive: true,
+					middleware: function (connect, options) {
+						var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
+						return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(optBase.map(function(path){ return connect.static(path); }));
+					}
 				}
 			}
 		},
@@ -49,12 +53,14 @@ module.exports = function(grunt) {
 		},
 		copy: {
 			lib: {
-				src: 'lib/angular/*',
-				dest: 'app/script/',
+				files: [
+					{src: 'lib/angular/angular.min.js*', dest: 'app/script/'},
+					{src: 'lib/angular-route/angular-route.min.js*', dest: 'app/script/'}
+				]
 			},
 			html: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'app/'},
+					{expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'app/'}
 				]
 			},
 			templates: {

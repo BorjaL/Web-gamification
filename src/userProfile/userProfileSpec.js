@@ -46,7 +46,7 @@ describe('User profile ', function () {
       window = $window;
       userProfileFactory = _userProfileFactory_;
       httpBackend = $httpBackend;
-      userProfileFactory.redirectToLogin = sinon.spy();
+      userProfileFactory.redirectToHome = sinon.spy();
     }));
 
     afterEach(function() {
@@ -92,7 +92,7 @@ describe('User profile ', function () {
       httpBackend.flush();
 
       //then:
-      userProfileFactory.redirectToLogin.should.have.been.calledOnce;
+      userProfileFactory.redirectToHome.should.have.been.calledOnce;
     });
     
   });

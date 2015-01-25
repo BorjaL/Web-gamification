@@ -11,7 +11,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", function 
 				callback(null,data);
 			})
 			.error(function(error) {
-				service.redirectToLogin();
+				service.redirectToHome();
 			});
 	};
 
@@ -19,7 +19,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", function 
 		return $window.localStorage.getItem('user_token') !== null;
 	};
 
-	service.redirectToLogin = function(){
+	service.redirectToHome = function(){
 		$window.location.href = "/";
 	};
 
