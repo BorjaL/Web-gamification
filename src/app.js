@@ -9,9 +9,19 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
   	$locationProvider.html5Mode(true);
     $routeProvider.
+      when('/', {
+        templateUrl: "html/home/home.html"
+      }).
+      when('/register', {
+        templateUrl: "html/register/register.html"
+      }).
+      when('/login', {
+        templateUrl: "html/login/login.html"
+      }).
       when('/:username', {
-        templateUrl: function(params){
-        	return "templates/ownerprofile.html";
-        }
+        templateUrl: "html/userprofile/userprofile.html"
+      }).
+      otherwise({
+        templateUrl: "html/home.html"
       });
   }]);

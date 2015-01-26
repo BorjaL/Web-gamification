@@ -1,4 +1,4 @@
-login_module.factory('loginFactory',["$http", "$window", function ($http, $window){
+login_module.factory('loginFactory',["$http", "$window", "$location", function ($http, $window, $location){
 	var service = {};
 
 	service.login = function(login_data, callback){
@@ -10,7 +10,7 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
 					$window.localStorage.setItem('user_id', data.username);
-					service.navigate("/userProfile/");
+					$location.path('/'+data.username).replace();
 				}
 				else{
 					return callback(null, data.message);
@@ -28,10 +28,6 @@ login_module.factory('loginFactory',["$http", "$window", function ($http, $windo
 		var username_is_empty = login_data.username === undefined || login_data.username === null || login_data.username === '';
 		var password_is_empty = login_data.password === undefined || login_data.password === null || login_data.password === '';  
 		return !username_is_empty && !password_is_empty;
-	};
-
-	service.navigate = function (path){
-		$window.location.href = path;
 	};
 
 	return service;

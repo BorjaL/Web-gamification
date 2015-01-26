@@ -5,13 +5,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css" media="screen">
   </head>
   <body>
-    <div ng-include='"/templates/header.html"'></div>
-    <div class="container">
-      <a href="login/" class="btn btn-default btn-lg" type="button">Login</a>
-      <a href="register/" class="btn btn-default btn-lg" type="button">Sign up</a>
-      <div ng-view></div>
-    </div>
-
+    <div ng-view></div>
     <script src="/script/lib/angular/angular.min.js"></script>
     <script src="/script/lib/angular-route/angular-route.min.js"></script>
     <script src="/script/app.js"></script>

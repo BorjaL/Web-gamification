@@ -48,7 +48,6 @@ describe('Login ', function () {
       window = $window;
       loginFactory = _loginFactory_;
       httpBackend = $httpBackend;
-      loginFactory.navigate = sinon.spy();
     }));
 
     afterEach(function() {
@@ -69,7 +68,6 @@ describe('Login ', function () {
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
       expect(window.localStorage.getItem('user_id')).to.equal('username');
-      sinon.assert.calledWith(loginFactory.navigate, "/userProfile/");
     });
 
     it('a user can not login because of miss some field', function(){

@@ -60,12 +60,8 @@ module.exports = function(grunt) {
 			},
 			html: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'app/'}
-				]
-			},
-			templates: {
-				files: [
-					{expand: true, cwd: 'src/', src: ['**/templates/*.html'], dest: 'app/templates', filter: 'isFile', flatten: true},
+					{expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'app/html'},
+					{expand: true, cwd: 'src/', src: ['index.html'], dest: 'app/'}
 				]
 			},
 			css: {
