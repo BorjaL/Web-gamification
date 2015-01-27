@@ -44,13 +44,13 @@ describe('Register Functionality', function () {
 
   describe('Factory', function () {
 
-  	var httpBackend, registerFactory, window;
+  	var httpBackend, registerFactory, window, location;
 
-    beforeEach(inject(function ($window, $httpBackend, _registerFactory_) {
+    beforeEach(inject(function ($window, $httpBackend, $location, _registerFactory_) {
       window = $window;
       registerFactory = _registerFactory_;
       httpBackend = $httpBackend;
-      registerFactory.navigate = sinon.spy();
+      location = $location;
     }));
 
     afterEach(function() {
@@ -61,7 +61,7 @@ describe('Register Functionality', function () {
     it('register a user redirect me to the user page', function(){
 
       //given:
-      httpBackend.expectPOST('http://localhost:3023/players.json').respond({token: 'token'});
+      httpBackend.expectPOST('http://localhost:3023/players.json').respond({token: 'token', username: 'ToniStark'});
 
       //when:
       registerFactory.register({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -70,8 +70,7 @@ describe('Register Functionality', function () {
 
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
-      expect(window.localStorage.getItem('user_id')).to.equal('ToniStark');
-      sinon.assert.calledWith(registerFactory.navigate, "/userProfile/");
+      expect(location.path()).to.equal('/ToniStark');
     });
 
     it('a user can not register because the username already exists', function(){

@@ -1,4 +1,4 @@
-register_module.factory('registerFactory', ["$http", "$window", function ($http, $window){
+register_module.factory('registerFactory', ["$http", "$window", "$location", function ($http, $window, $location){
 
 	var service = {};
 
@@ -11,8 +11,7 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
-					$window.localStorage.setItem('user_id', register_data.username);
-					service.navigate("/userProfile/");
+					$location.path('/'+data.username).replace();
 				}
 				else{
 					return callback(null, data.message);
@@ -30,10 +29,6 @@ register_module.factory('registerFactory', ["$http", "$window", function ($http,
 		var username_is_empty = register_data.username === undefined || register_data.username === null || register_data.username === '';
 		var password_is_empty = register_data.password === undefined || register_data.password === null || register_data.password === '';  
 		return !username_is_empty && !password_is_empty;
-	};
-
-	service.navigate = function (path){
-		$window.location.href = path;
 	};
 
 	return service;
