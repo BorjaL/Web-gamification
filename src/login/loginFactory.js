@@ -9,7 +9,6 @@ login_module.factory('loginFactory',["$http", "$window", "$location", function (
 			.success(function(data) {
 				if (data.token){
 					$window.localStorage.setItem('user_token', data.token);
-					$window.localStorage.setItem('user_id', data.username);
 					$location.path('/'+data.username).replace();
 				}
 				else{
