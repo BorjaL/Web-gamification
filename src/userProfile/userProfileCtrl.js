@@ -1,13 +1,12 @@
-user_profile_module.controller('userProfileCtrl', ['$scope', 'userProfileFactory', function($scope, userProfileFactory){
+user_profile_module.controller('userProfileCtrl', ['$scope', '$routeParams', 'userProfileFactory', function($scope, $routeParams, userProfileFactory){
 
-	$scope.initUserInfo = function(){
-        if (userProfileFactory.hasToken()){
-            userProfileFactory.userInfo(function(error, user_info){
-                $scope.user_info = user_info.username;
-            });
-        }
-        else{
-            userProfileFactory.redirectToLogin();
-        }
+
+    $scope.initUserInfo = function(){
+        userProfileFactory.userInfo($routeParams.username, function(error, user_info, is_owner){
+            $scope.user_info = user_info.username;
+            $scope.is_owner = is_owner;
+        });
     };
+
+   
 }]);

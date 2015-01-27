@@ -11,13 +11,11 @@ describe('User profile ', function () {
       userProfileFactoryMock = {userInfo: sinon.spy(), redirectToLogin: sinon.spy(), hasToken: sinon.spy()};
       scope = $rootScope.$new();
       userProfileCtrl = $controller('userProfileCtrl', {
-        $scope: scope, userProfileFactory: userProfileFactoryMock
+        $scope: scope, $routeParams: {username: "TonyStark"}, userProfileFactory: userProfileFactoryMock
       });
     }));
 
     it('call to the factory for the user info if there is a token', function(){
-      //given:
-      userProfileFactoryMock.hasToken = sinon.stub().returns(true);
 
       //when:
       scope.initUserInfo();
@@ -25,28 +23,17 @@ describe('User profile ', function () {
       //then:
       userProfileFactoryMock.userInfo.should.have.been.calledOnce;
     });
-
-    it('if there is no token redirect to login page', function(){
-      //given:
-      userProfileFactoryMock.hasToken = sinon.stub().returns(false);
-
-      //when:
-      scope.initUserInfo();
-
-      //then:
-      userProfileFactoryMock.redirectToLogin.should.have.been.calledOnce;
-    });
   });
 
 
   describe('Factory', function () {
-    var httpBackend, userProfileFactory, window;
+    var httpBackend, userProfileFactory, window, location;
 
-    beforeEach(inject(function ($window, $httpBackend, _userProfileFactory_) {
+    beforeEach(inject(function ($window, $httpBackend, $location, _userProfileFactory_) {
       window = $window;
       userProfileFactory = _userProfileFactory_;
       httpBackend = $httpBackend;
-      userProfileFactory.redirectToHome = sinon.spy();
+      location = $location;
     }));
 
     afterEach(function() {
@@ -67,12 +54,11 @@ describe('User profile ', function () {
 
     it('the user info is given from the server', function(){
       //given:
-      window.localStorage.setItem('user_id', 'username');
       window.localStorage.setItem('user_token', 'token');
-      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond({username: 'username'});
+      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond({player: {username: 'username'}, is_owner: false});
 
       //when:
-      userProfileFactory.userInfo(function(error, user_info){
+      userProfileFactory.userInfo("username", function(error, user_info, is_owner){
         //then:
         assert(user_info.username === "username")
       });
@@ -83,16 +69,15 @@ describe('User profile ', function () {
 
     it('redirect to the main page when there is no permissions', function(){
       //given:
-      window.localStorage.setItem('user_id', 'username');
       window.localStorage.setItem('user_token', 'token');
       httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond(403);
 
       //when:
-      var user_info = userProfileFactory.userInfo({token: 'token'}, function(error, _message){});
+      var user_info = userProfileFactory.userInfo("username", function(error, _message){});
       httpBackend.flush();
 
       //then:
-      userProfileFactory.redirectToHome.should.have.been.calledOnce;
+      expect(location.path()).to.equal('/');
     });
     
   });
