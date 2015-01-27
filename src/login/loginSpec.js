@@ -42,12 +42,13 @@ describe('Login ', function () {
 
   describe('Factory', function () {
 
-    var httpBackend, loginFactory, window;
+    var httpBackend, loginFactory, window, location;
 
-    beforeEach(inject(function ($window, $httpBackend, _loginFactory_) {
+    beforeEach(inject(function ($window, $httpBackend, $location, _loginFactory_) {
       window = $window;
       loginFactory = _loginFactory_;
       httpBackend = $httpBackend;
+      location = $location;
     }));
 
     afterEach(function() {
@@ -58,7 +59,7 @@ describe('Login ', function () {
     it('login function save the token and redirect to the user page', function(){
       
       //given:
-      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token', username: "username"});
+      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token', username: "ToniStark"});
 
       //when:
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -67,7 +68,7 @@ describe('Login ', function () {
 
       //then:
       expect(window.localStorage.getItem('user_token')).to.equal('token');
-      expect(window.localStorage.getItem('user_id')).to.equal('username');
+      expect(location.path()).to.equal('/ToniStark');
     });
 
     it('a user can not login because of miss some field', function(){
