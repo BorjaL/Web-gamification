@@ -2,8 +2,8 @@
   <div ng-include='"/html/header/header.html"'></div>
   <div class="container">
     <div class="row" ng-init="initUserInfo()">
-      <h1>Hola {{user_info}}</h1>
-      <div ng-controller="headerCtrl"><button ng-click="logOut()" ng-show="isTokenActive()">Log Out</button></div>
+      <h1 ng-show="is_owner">Hola {{user_info.username}}</h1>
+      <h1 ng-show="!is_owner">Welcome to {{user_info.username}}'s profile</h1>
     </div>
   </div>
 </div>

@@ -67,17 +67,18 @@ describe('User profile ', function () {
       
     });
 
-    it('redirect to the main page when there is no permissions', function(){
+    it('show different message when visiting other player profile', function(){
       //given:
       window.localStorage.setItem('user_token', 'token');
       httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond(403);
 
       //when:
-      var user_info = userProfileFactory.userInfo("username", function(error, _message){});
+      var user_info = userProfileFactory.userInfo("username", function(error, user_info, is_owner){
+          //then:
+          assert(user_info === null)
+          assert(is_owner === false)
+      });
       httpBackend.flush();
-
-      //then:
-      expect(location.path()).to.equal('/');
     });
     
   });

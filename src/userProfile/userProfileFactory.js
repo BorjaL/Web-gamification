@@ -9,8 +9,11 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
 			.success(function(data) {
 				callback(null, data.player, data.is_owner);
 			})
-			.error(function(error) {
-				$location.path("/").replace();
+			.error(function(error, status) {
+				if (status === 403){
+            		return callback(null, null, false);
+            	}
+                return callback("Something goes wrong :S");
 			});
 	};
 
