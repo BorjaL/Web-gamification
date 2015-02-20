@@ -39,6 +39,7 @@ describe('User profile ', function () {
     afterEach(function() {
       httpBackend.verifyNoOutstandingExpectation();
       httpBackend.verifyNoOutstandingRequest();
+      window.localStorage.removeItem('user_token');
     });
 
     it('test if there are a token in the local storage', function(){
@@ -63,9 +64,23 @@ describe('User profile ', function () {
         assert(user_info.username === "username")
       });
       httpBackend.flush();
-
-      
     });
+
+
+
+    it('server gives us an error', function(){
+      //given:
+      httpBackend.expectGET('http://localhost:3023/players/username?access_token=null').respond(500);
+
+      //when:
+      userProfileFactory.userInfo("username", function(error, user_info, is_owner){
+      	//then:
+        assert(error == "Something goes wrong :S")
+      });
+
+      httpBackend.flush();
+    });
+
 
     it('show different message when visiting other player profile', function(){
       //given:
@@ -75,6 +90,7 @@ describe('User profile ', function () {
       //when:
       var user_info = userProfileFactory.userInfo("username", function(error, user_info, is_owner){
           //then:
+          assert(error === null)
           assert(user_info === null)
           assert(is_owner === false)
       });

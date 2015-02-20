@@ -9,6 +9,9 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
   	$locationProvider.html5Mode(true);
     $routeProvider.
+      when('/404', {
+        templateUrl: "html/404.html"
+      }).
       when('/', {
         templateUrl: "html/home/home.html"
       }).
