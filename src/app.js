@@ -9,9 +9,6 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
   	$locationProvider.html5Mode(true);
     $routeProvider.
-      when('/404', {
-        templateUrl: "html/404.html"
-      }).
       when('/', {
         templateUrl: "html/home/home.html"
       }).
@@ -25,6 +22,8 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: "html/userprofile/userprofile.html"
       }).
       otherwise({
-        templateUrl: "html/home.html"
+        templateUrl: "html/404.html"
       });
+  }]).config(['$httpProvider', function($httpProvider) {  
+    $httpProvider.interceptors.push('sessionInjector');
   }]);

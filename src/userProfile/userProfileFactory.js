@@ -3,9 +3,8 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
 	var service = {};
 
 	service.userInfo = function(username, callback){
-		var token 	= $window.localStorage.getItem('user_token');
 
-		$http.get('http://localhost:3023/players/' + username+ '?access_token=' + token)
+		$http.get('http://localhost:3023/players/' + username)
 			.success(function(data) {
 				callback(null, data.player, data.is_owner);
 			})

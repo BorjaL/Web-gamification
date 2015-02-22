@@ -56,7 +56,7 @@ describe('User profile ', function () {
     it('the user info is given from the server', function(){
       //given:
       window.localStorage.setItem('user_token', 'token');
-      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond({player: {username: 'username'}, is_owner: false});
+      httpBackend.expectGET('http://localhost:3023/players/username').respond({player: {username: 'username'}, is_owner: false});
 
       //when:
       userProfileFactory.userInfo("username", function(error, user_info, is_owner){
@@ -70,7 +70,7 @@ describe('User profile ', function () {
 
     it('server gives us an error', function(){
       //given:
-      httpBackend.expectGET('http://localhost:3023/players/username?access_token=null').respond(500);
+      httpBackend.expectGET('http://localhost:3023/players/username').respond(500);
 
       //when:
       userProfileFactory.userInfo("username", function(error, user_info, is_owner){
@@ -85,7 +85,7 @@ describe('User profile ', function () {
     it('show different message when visiting other player profile', function(){
       //given:
       window.localStorage.setItem('user_token', 'token');
-      httpBackend.expectGET('http://localhost:3023/players/username?access_token=token').respond(403);
+      httpBackend.expectGET('http://localhost:3023/players/username').respond(403);
 
       //when:
       var user_info = userProfileFactory.userInfo("username", function(error, user_info, is_owner){
