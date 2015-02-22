@@ -1,9 +1,14 @@
 <div ng-controller="userProfileCtrl">
+  <div ng-show="!not_found">
   <div ng-include='"/html/header/header.html"'></div>
   <div class="container">
     <div class="row" ng-init="initUserInfo()">
-      <h1 ng-show="is_owner">Hola {{user_info.username}}</h1>
-      <h1 ng-show="!is_owner">Welcome to {{user_info.username}}'s profile</h1>
+      <h1 ng-show="user_info.is_owner" class="ng-hide">Hola {{user_info.username}}</h1>
+      <h1 ng-show="!user_info.is_owner">Welcome to {{user_info.username}}'s profile</h1>
     </div>
+  </div>
+  </div>
+  <div ng-show="not_found" class="ng-hide">
+  	<div ng-include='"/html/404.html"'></div>
   </div>
 </div>

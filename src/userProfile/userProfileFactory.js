@@ -6,6 +6,9 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
 
 		$http.get('http://localhost:3023/players/' + username)
 			.success(function(data) {
+				if (!data.is_active){
+					$window.localStorage.removeItem('user_token');
+				}
 				callback(null, data.player, data.is_owner);
 			})
 			.error(function(error, status) {
@@ -13,7 +16,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
             		return callback(null, null, false);
             	}
             	else if (status === 404){
-            		return $location.path('/404');
+            		return callback("404");
             	}
                 return callback("Something goes wrong :S");
 			});
