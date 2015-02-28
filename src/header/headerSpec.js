@@ -20,61 +20,49 @@ describe('Header', function () {
       scope.logOut();
 
       //then:
-      headerFactoryMock.logOut.should.have.been.calledOnce 
+      headerFactoryMock.logOut.should.have.been.calledOnce;
     });
 
-  it('if we ask if the sesion is active we call header factory', function (){
+    it('if we ask if the sesion is active we call header factory', function (){
       //when:
       scope.isTokenActive();
 
       //then:
-      headerFactoryMock.isTokenActive.should.have.been.calledOnce 
+      headerFactoryMock.isTokenActive.should.have.been.calledOnce;
     });
   });
 
 
   describe('Factory', function () {
 
-    var headerFactory, window;
+    var headerFactory, sessionStorageFactory;
 
-    beforeEach(inject(function ($window, _headerFactory_) {
-      window = $window;
+    beforeEach(inject(function (_sessionStorageFactory_, _headerFactory_) {
+      sessionStorageFactory = _sessionStorageFactory_;
+      sessionStorageFactory.removeSessionToken = sinon.spy();
+      sessionStorageFactory.hasSessionToken = sinon.spy()
       headerFactory = _headerFactory_;
       headerFactory.redirect = sinon.spy();
     }));
 
-    it('logOut function delete token from local storage', function(){
-      
-      //given:
-      window.localStorage.setItem('user_token', 'user_token');
+    it('logOut function delete token from local storage and redirect', function(){
 
       //when:
       headerFactory.logOut();
 
       //then:
-      expect(window.localStorage.getItem('user_token')).to.be.null;
+      sessionStorageFactory.removeSessionToken.should.have.been.calledOnce;
+      headerFactory.redirect.should.have.been.calledOnce;
     });
 
     it('the session is active if there is a token in the local storage', function(){
-      //given:
-      window.localStorage.setItem('user_token', 'user_token');
 
       //when:
       result = headerFactory.isTokenActive();
 
       //then:
-      expect(result).to.be.true;
-    });
-
-    it('the session is not active if there is not a token in the local storage', function(){
-      //given:
-      window.localStorage.removeItem('user_token');
-
-      //when:
-      result = headerFactory.isTokenActive();
-
-      //then:
-      expect(result).to.be.false;
+      sessionStorageFactory.hasSessionToken.should.have.been.calledOnce
     });
   });
+
 });

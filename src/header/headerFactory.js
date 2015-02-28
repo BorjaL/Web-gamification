@@ -1,13 +1,13 @@
-header_module.factory('headerFactory',["$window", function ($window){
+header_module.factory('headerFactory',["$window", "sessionStorageFactory",function ($window, sessionStorageFactory){
 	var service = {};
 
 	service.logOut = function(){
-		$window.localStorage.removeItem('user_token');
+		sessionStorageFactory.removeSessionToken();
 		service.redirect();
 	};
 
 	service.isTokenActive = function(){
-		return $window.localStorage.getItem('user_token') !== null;
+		return sessionStorageFactory.hasSessionToken();
 	};
 
 	service.redirect = function(){

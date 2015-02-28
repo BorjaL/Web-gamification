@@ -1,1 +1,1 @@
-var header_module = angular.module('header', []);
+var header_module = angular.module('header', ['session']);
