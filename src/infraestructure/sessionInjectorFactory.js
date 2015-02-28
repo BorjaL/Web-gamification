@@ -1,4 +1,4 @@
-app.factory('sessionInjector', ['$window', function($window) {  
+session_module.factory('sessionInjector', ['$window', function($window) {  
     var sessionInjector = {
         request: function(config) {
             if ($window.localStorage.getItem('user_token')){

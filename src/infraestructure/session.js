@@ -1,0 +1,1 @@
+var session_module = angular.module('session', []);
