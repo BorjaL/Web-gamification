@@ -5,8 +5,9 @@
   </div>
   <div ng-controller="headerCtrl">
     <ul class="nav navbar-nav navbar-right">
-      <li>{{user_info.username}}</li>
       <li ng-show="isTokenActive()"><a href="#" ng-click="logOut()">Sign out</a></li>
+      <li ng-show="!isTokenActive()" class="ng-hide"><a href="/login" >Log in</a></li>
+      <li ng-show="!isTokenActive()" class="ng-hide"><a href="/register" >Sign up</a></li>
     </ul>
   </div>
 </div>
