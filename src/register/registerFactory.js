@@ -1,4 +1,4 @@
-register_module.factory('registerFactory', ["$http", "$window", "$location", function ($http, $window, $location){
+register_module.factory('registerFactory', ["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
 
 	var service = {};
 
@@ -10,7 +10,7 @@ register_module.factory('registerFactory', ["$http", "$window", "$location", fun
 		$http.post('http://localhost:3023/players.json', register_data)
 			.success(function(data) {
 				if (data.token){
-					$window.localStorage.setItem('user_token', data.token);
+					sessionStorageFactory.setSessionToken(data.token);
 					$location.path('/'+data.username).replace();
 				}
 				else{

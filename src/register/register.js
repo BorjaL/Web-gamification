@@ -1,1 +1,1 @@
-var register_module = angular.module('register', []);
+var register_module = angular.module('register', ['session']);

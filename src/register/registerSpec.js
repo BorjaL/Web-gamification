@@ -44,10 +44,10 @@ describe('Register Functionality', function () {
 
   describe('Factory', function () {
 
-  	var httpBackend, registerFactory, window, location;
+  	var httpBackend, registerFactory, sessionStorageFactory, location;
 
-    beforeEach(inject(function ($window, $httpBackend, $location, _registerFactory_) {
-      window = $window;
+    beforeEach(inject(function (_sessionStorageFactory_, $httpBackend, $location, _registerFactory_) {
+      sessionStorageFactory = _sessionStorageFactory_;
       registerFactory = _registerFactory_;
       httpBackend = $httpBackend;
       location = $location;
@@ -69,7 +69,7 @@ describe('Register Functionality', function () {
       httpBackend.flush();
 
       //then:
-      expect(window.localStorage.getItem('user_token')).to.equal('token');
+      expect(sessionStorageFactory.getSessionToken()).to.equal('token');
       expect(location.path()).to.equal('/ToniStark');
     });
 
