@@ -27,10 +27,10 @@ describe('User profile ', function () {
 
 
   describe('Factory', function () {
-    var httpBackend, userProfileFactory, window, location;
+    var httpBackend, userProfileFactory, sessionStorageFactory, location;
 
-    beforeEach(inject(function ($window, $httpBackend, $location, _userProfileFactory_) {
-      window = $window;
+    beforeEach(inject(function (_sessionStorageFactory_, $httpBackend, $location, _userProfileFactory_) {
+      sessionStorageFactory = _sessionStorageFactory_;
       userProfileFactory = _userProfileFactory_;
       httpBackend = $httpBackend;
       location = $location;
@@ -39,12 +39,12 @@ describe('User profile ', function () {
     afterEach(function() {
       httpBackend.verifyNoOutstandingExpectation();
       httpBackend.verifyNoOutstandingRequest();
-      window.localStorage.removeItem('user_token');
+      sessionStorageFactory.removeSessionToken();
     });
 
     it('test if there are a token in the local storage', function(){
       //given:
-      window.localStorage.setItem('user_token', 'token');
+      sessionStorageFactory.setSessionToken('token');
 
       //when:
       var has_token = userProfileFactory.hasToken();
@@ -55,7 +55,7 @@ describe('User profile ', function () {
 
     it('the user info is given from the server', function(){
       //given:
-      window.localStorage.setItem('user_token', 'token');
+      sessionStorageFactory.setSessionToken('token');
       httpBackend.expectGET('http://localhost:3023/players/username').respond({player: {username: 'username'}, is_owner: false});
 
       //when:
@@ -84,7 +84,7 @@ describe('User profile ', function () {
 
     it('show different message when visiting other player profile', function(){
       //given:
-      window.localStorage.setItem('user_token', 'token');
+      sessionStorageFactory.setSessionToken('token');
       httpBackend.expectGET('http://localhost:3023/players/username').respond(403);
 
       //when:

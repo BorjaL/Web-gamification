@@ -1,4 +1,4 @@
-user_profile_module.factory('userProfileFactory', ["$http", "$window", "$location", function ($http, $window, $location){
+user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
 
 	var service = {};
 
@@ -7,7 +7,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
 		$http.get('http://localhost:3023/players/' + username)
 			.success(function(data) {
 				if (!data.is_active){
-					$window.localStorage.removeItem('user_token');
+					sessionStorageFactory.removeSessionToken();
 				}
 				callback(null, data.player, data.is_owner);
 			})
@@ -23,7 +23,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$window", "$locatio
 	};
 
 	service.hasToken = function (){
-		return $window.localStorage.getItem('user_token') !== null;
+		return sessionStorageFactory.hasSessionToken();
 	};
 
 	return service;
