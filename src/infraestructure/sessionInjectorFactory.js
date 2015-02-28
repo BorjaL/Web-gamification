@@ -1,8 +1,8 @@
-session_module.factory('sessionInjector', ['$window', function($window) {  
+session_module.factory('sessionInjector', ['sessionStorageFactory', function(sessionStorageFactory) {  
     var sessionInjector = {
         request: function(config) {
-            if ($window.localStorage.getItem('user_token')){
-               config.headers.authorization = "Bearer " + $window.localStorage.getItem('user_token');
+            if (sessionStorageFactory.hasSessionToken()){
+               config.headers.authorization = "Bearer " + sessionStorageFactory.getSessionToken();
             }
             return config;
         }

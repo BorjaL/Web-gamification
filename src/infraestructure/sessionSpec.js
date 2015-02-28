@@ -2,6 +2,38 @@ describe('Session', function () {
 	beforeEach(module('session'));
 
 	describe('Storage Factory', function () {
+		var sessionStorageFactory, sessionInjector
+
+		beforeEach(inject(function ( _sessionStorageFactory_, _sessionInjector_) {
+			sessionInjector = _sessionInjector_
+			sessionStorageFactory = _sessionStorageFactory_;
+		}));
+
+		it('add header authorization', function(){
+			//given:
+			sessionStorageFactory.setSessionToken('token')
+
+			//when:
+			var result = sessionInjector.request({headers: []})
+
+			//then:
+			assert(result.headers.authorization === "Bearer token", "The header is not added")
+		});
+
+		it('not add header authorization', function(){
+			//given:
+			sessionStorageFactory.removeSessionToken()
+
+			//when:
+			var result = sessionInjector.request({headers: []})
+
+			//then:
+			expect(result.headers.authorization).to.be.undefined;
+		});
+
+	});
+
+	describe('Storage Factory', function () {
 
 		var sessionStorageFactory, window;
 
@@ -18,7 +50,7 @@ describe('Session', function () {
 			sessionStorageFactory.removeSessionToken();
 
 			//then:
-			expect(window.localStorage.getItem('user_token')).to.be.null;;
+			expect(window.localStorage.getItem('user_token')).to.be.null;
 		});
 
 		it('get session token', function(){
@@ -41,7 +73,7 @@ describe('Session', function () {
 			sessionStorageFactory.setSessionToken("token");
 
 			//then:
-			assert(window.localStorage.getItem('user_token') === 'token', 'the token is saved correctly');
+			assert(window.localStorage.getItem('user_token') === 'token', 'the token is not saved correctly');
 		});
 
 		it('has session token', function(){
@@ -53,7 +85,7 @@ describe('Session', function () {
 			var result = sessionStorageFactory.hasSessionToken();
 
 			//then:
-			assert(result === true, 'the token exists');
+			assert(result === true, 'the token does not exist');
 		});
 
 		it('has no session token', function(){
@@ -64,7 +96,7 @@ describe('Session', function () {
 			var result = sessionStorageFactory.hasSessionToken();
 
 			//then:
-			assert(result === false, 'the token does not exist');
+			assert(result === false, 'the token exists');
 		});
 	});
 });
