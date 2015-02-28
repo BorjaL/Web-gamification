@@ -1,1 +1,1 @@
-var login_module = angular.module('login', []);
+var login_module = angular.module('login', ['session']);

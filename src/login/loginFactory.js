@@ -1,4 +1,4 @@
-login_module.factory('loginFactory',["$http", "$window", "$location", function ($http, $window, $location){
+login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
 	var service = {};
 
 	service.login = function(login_data, callback){
@@ -8,7 +8,7 @@ login_module.factory('loginFactory',["$http", "$window", "$location", function (
 		$http.post('http://localhost:3023/players/login.json', login_data)
 			.success(function(data) {
 				if (data.token){
-					$window.localStorage.setItem('user_token', data.token);
+					sessionStorageFactory.setSessionToken(data.token);
 					$location.path('/'+data.username).replace();
 				}
 				else{

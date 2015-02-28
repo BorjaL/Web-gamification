@@ -42,13 +42,13 @@ describe('Login ', function () {
 
   describe('Factory', function () {
 
-    var httpBackend, loginFactory, window, location;
+    var httpBackend, loginFactoryd, location, sessionStorageFactory;
 
-    beforeEach(inject(function ($window, $httpBackend, $location, _loginFactory_) {
-      window = $window;
+    beforeEach(inject(function ($httpBackend, $location, _loginFactory_, _sessionStorageFactory_) {
       loginFactory = _loginFactory_;
       httpBackend = $httpBackend;
       location = $location;
+      sessionStorageFactory = _sessionStorageFactory_;
     }));
 
     afterEach(function() {
@@ -67,7 +67,7 @@ describe('Login ', function () {
       httpBackend.flush();
 
       //then:
-      expect(window.localStorage.getItem('user_token')).to.equal('token');
+      expect(sessionStorageFactory.getSessionToken()).to.equal('token');
       expect(location.path()).to.equal('/ToniStark');
     });
 
