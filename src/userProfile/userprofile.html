@@ -5,6 +5,7 @@
     <div class="row" ng-init="initUserInfo()">
       <h1 ng-show="user_info.is_owner" class="ng-hide">Hola {{user_info.username}}</h1>
       <h1 ng-show="!user_info.is_owner">Welcome to {{user_info.username}}'s profile</h1>
+      <a href="newgame/" ng-show="user_info.is_owner" class="ng-hide btn btn-default btn-lg" type="button">Create Game</a>
     </div>
   </div>
   </div>

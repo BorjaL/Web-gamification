@@ -3,7 +3,8 @@ var app = angular.module('app',
 						 'login', 
 						 'register', 
 						 'userProfile',
-						 'header']);
+						 'header',
+             'game']);
 
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
@@ -17,6 +18,9 @@ app.config(['$routeProvider', '$locationProvider',
       }).
       when('/login', {
         templateUrl: "html/login/login.html"
+      }).
+      when('/newgame', {
+        templateUrl: "html/game/newgame.html"
       }).
       when('/:username', {
         templateUrl: "html/userprofile/userprofile.html"
