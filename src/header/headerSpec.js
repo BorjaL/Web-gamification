@@ -7,7 +7,6 @@ describe('Header', function () {
     var headerCtrl, headerFactoryMock, scope;
 
     beforeEach(inject(function ($controller, $rootScope) {
-      //given:
       headerFactoryMock = {logOut: sinon.spy(), isTokenActive: sinon.spy()};
       scope = $rootScope.$new();
       headerCtrl = $controller('headerCtrl', {
