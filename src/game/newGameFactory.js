@@ -1,4 +1,4 @@
-game_module.factory('newGameFactory', ["$http", "$q", function ($http, $q){
+game_module.factory('newGameFactory', ["$http", "$q", "$window", function ($http, $q, $window){
 
 	var service = {};
 
@@ -11,7 +11,8 @@ game_module.factory('newGameFactory', ["$http", "$q", function ($http, $q){
 				def.resolve(true);
 			})
 			.error(function(error, status) {
-				if (status === 403){
+				console.log(status);
+				if (status === 401){
             		service.redirect();
             	}
                 def.reject("Some error occur");
