@@ -12,7 +12,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFacto
 				callback(null, data.player, data.is_owner);
 			})
 			.error(function(error, status) {
-				if (status === 403){
+				if (status === 401){
             		return callback(null, null, false);
             	}
             	else if (status === 404){

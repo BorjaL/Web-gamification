@@ -85,7 +85,7 @@ describe('User profile ', function () {
     it('show different message when visiting other player profile', function(){
       //given:
       sessionStorageFactory.setSessionToken('token');
-      httpBackend.expectGET('http://localhost:3023/players/username').respond(403);
+      httpBackend.expectGET('http://localhost:3023/players/username').respond(401);
 
       //when:
       var user_info = userProfileFactory.userInfo("username", function(error, user_info, is_owner){

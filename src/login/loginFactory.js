@@ -16,7 +16,7 @@ login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$locatio
 				}
             })
             .error(function(error, status) {
-            	if (status === 403){
+            	if (status === 401){
             		return callback(null, "Wrong credentials");
             	}
                 return callback("Ups! Something goes wrong... Let me check it out, refresh and try it again");
