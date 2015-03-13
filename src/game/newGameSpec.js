@@ -12,7 +12,8 @@ describe('New Game', function () {
 					deferred = q.defer();
 					deferred.resolve(true);
 					return deferred.promise;
-				}
+				},
+				createGame: sinon.spy()
 			};
 
 			q = $q;
@@ -31,15 +32,24 @@ describe('New Game', function () {
         	assert.isDefined(scope.hasPermission);
     	});
 
+    	it('create game function call to the right method in the service', function (){
+    		//when:
+    		scope.sendGameInfo();
+
+    		//then:
+        	newGameFactoryMock.createGame.should.have.been.calledOnce;
+    	});
+
 	});
 
 	describe('Factory', function () {
 
-		var newGameFactory, httpBackend;
+		var newGameFactory, httpBackend, location;
 
-		beforeEach(inject(function ($httpBackend, _newGameFactory_) {
+		beforeEach(inject(function ($httpBackend, $location, _newGameFactory_) {
 			newGameFactory = _newGameFactory_;
 			httpBackend = $httpBackend;
+			location = $location
 		}));
 
 		it('returns true if the api give permission to the user to create a game', function (){
@@ -75,6 +85,19 @@ describe('New Game', function () {
 
 			//then:
 			assert(result === "Some error occur");
+		});
+
+		it('when the game is created redirect to the game profile', function (){
+			//given:
+			httpBackend.expectPOST('http://localhost:3023/games.json',{}).respond(204, {url: "/game_path"});
+
+			//when:
+			newGameFactory.createGame({});
+
+			httpBackend.flush();
+
+			//then:
+			expect(location.path()).to.equal("/game_path");
 		});
 	});
 });

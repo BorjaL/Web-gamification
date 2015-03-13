@@ -1,4 +1,4 @@
-game_module.factory('newGameFactory', ["$http", "$q", "$window", function ($http, $q, $window){
+game_module.factory('newGameFactory', ["$http", "$q", "$location", function ($http, $q, $location){
 
 	var service = {};
 
@@ -11,7 +11,6 @@ game_module.factory('newGameFactory', ["$http", "$q", "$window", function ($http
 				def.resolve(true);
 			})
 			.error(function(error, status) {
-				console.log(status);
 				if (status === 401){
             		service.redirect();
             	}
@@ -20,8 +19,22 @@ game_module.factory('newGameFactory', ["$http", "$q", "$window", function ($http
 		return def.promise;
 	};
 
-	service.redirect = function(){
-		$window.location.href = "/login";
+	service.createGame = function(game_data){
+		$http.post('http://localhost:3023/games.json', game_data)
+			.success(function(data) {
+				console.log(data);
+				service.redirect(data.url);
+			})
+			.error(function(error, status) {
+				console.log(error);
+				if (status === 401){
+            		service.redirect("/login");
+            	}
+			});
+	};
+
+	service.redirect = function(new_path){
+		$location.path(new_path).replace();
 	};
 
 	return service;
