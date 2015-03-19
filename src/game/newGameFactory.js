@@ -22,7 +22,6 @@ game_module.factory('newGameFactory', ["$http", "$q", "$location", function ($ht
 	service.createGame = function(game_data){
 		$http.post('http://localhost:3023/games.json', game_data)
 			.success(function(data) {
-				console.log(data);
 				service.redirect(data.url);
 			})
 			.error(function(error, status) {
