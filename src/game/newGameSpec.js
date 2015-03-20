@@ -40,6 +40,34 @@ describe('New Game', function () {
         	newGameFactoryMock.createGame.should.have.been.calledOnce;
     	});
 
+    	it('add new action save the action and clear the inputs', function (){
+    		//given:
+    		scope.name = "Action name";
+    		scope.points = 4;
+
+    		//when:
+    		scope.addAction();
+
+    		//then:
+    		expect(scope.new_game_info.actions[0].name).to.equal('Action name');
+    		expect(scope.new_game_info.actions[0].points).to.equal(4);
+    		expect(scope.name).to.equal('');
+    		expect(scope.points).to.equal('');
+    	});
+
+    	it('remove an action delete the action of the list', function (){
+    		//given:
+    		scope.new_game_info.actions = [{name: 'Action 1', points: 3}, {name: 'Action 2', points: 1}]
+
+    		//when:
+    		scope.removeAction(0);
+
+    		//then:
+    		expect(scope.new_game_info.actions.length).to.equal(1);
+    		expect(scope.new_game_info.actions[0].name).to.equal('Action 2');
+    		expect(scope.new_game_info.actions[0].points).to.equal(1);
+    	});
+
 	});
 
 	describe('Factory', function () {
