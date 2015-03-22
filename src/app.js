@@ -19,6 +19,9 @@ app.config(['$routeProvider', '$locationProvider',
       when('/login', {
         templateUrl: "html/login/login.html"
       }).
+      when('/:username/game/:gamename', {
+        templateUrl: "html/game/gameprofile.html"
+      }).
       when('/newgame', {
         templateUrl: "html/game/newgame.html"
       }).
