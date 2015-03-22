@@ -117,7 +117,7 @@ describe('New Game', function () {
 
 		it('when the game is created redirect to the game profile', function (){
 			//given:
-			httpBackend.expectPOST('http://localhost:3023/games.json',{}).respond(204, {url: "/game_path"});
+			httpBackend.expectPOST('http://localhost:3023/games.json',{}).respond(204, "/owner/games/game_path");
 
 			//when:
 			newGameFactory.createGame({});
@@ -125,7 +125,7 @@ describe('New Game', function () {
 			httpBackend.flush();
 
 			//then:
-			expect(location.path()).to.equal("/game_path");
+			expect(location.path()).to.equal("/owner/games/game_path");
 		});
 	});
 });
