@@ -1,4 +1,4 @@
-user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
+user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFactory", function ($http, sessionStorageFactory){
 
 	var service = {};
 
