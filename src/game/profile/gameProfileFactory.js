@@ -1,26 +1,26 @@
-game_module.factory('gameProfileFactory', ["$http", function ($http){
+game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 
 	var service = {};
 
-	service.gameInfo = function(username, callback){
+	service.gameInfo = function(username, game_url){
 
-		$http.get('http://localhost:3023/players/' + username)
+		var def = $q.defer();
+
+		$http.get('http://localhost:3023/games/' + username + '/' + game_url)
 			.success(function(data) {
-				if (!data.is_active){
-					sessionStorageFactory.removeSessionToken();
-				}
-				callback(null, data.player, data.is_owner);
+				def.resolve(data);
 			})
 			.error(function(error, status) {
-				if (status === 401){
-            		return callback(null, null, false);
+            	if (status === 404){
+            		def.reject(status);
             	}
-            	else if (status === 404){
-            		return callback("404");
-            	}
-                return callback("Something goes wrong :S");
+                def.reject("Some error occur");
 			});
+
+		return def.promise;
 	};
+
+
 
 	return service;
 }]);
