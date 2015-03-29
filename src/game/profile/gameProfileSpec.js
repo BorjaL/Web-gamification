@@ -28,7 +28,7 @@ describe('Game Profile', function () {
     		scope.$apply();
 
     		//then:
-        	assert.isDefined(scope.game_info.name);
+        	assert(scope.game_info.name == "Destroy-the-evil");
     	});
 
 	});
