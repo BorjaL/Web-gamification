@@ -6,11 +6,14 @@
         <h1>{{game_info.name}}</h1>
       </div>
       <div class="form-group" ng-repeat="action in game_info.actions">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
           {{action.name}}
         </div>
         <div class="col-lg-2">
           {{action.points}}
+        </div>
+        <div class="col-lg-2" ng-show="game_info.userIsAPlayer">
+          <button class="btn btn-primary">Done</button>
         </div>
       </div>
     </div>
