@@ -5,7 +5,7 @@ game_module.controller('gameProfileCtrl', ['$scope', '$routeParams', 'gameProfil
     $scope.initGameInfo = function(){
         gameProfileFactory.gameInfo($routeParams.username, $routeParams.gamename)
                     .then(function(game_info){
-                        $scope.game_info.name = game_info.name;
+                        $scope.game_info = game_info;
                     }, function(data){
                         if (data === 404){
                             $scope.not_found = true;

@@ -5,6 +5,14 @@
       <div class="row" ng-init="initGameInfo()">
         <h1>{{game_info.name}}</h1>
       </div>
+      <div class="form-group" ng-repeat="action in game_info.actions">
+        <div class="col-lg-8">
+          {{action.name}}
+        </div>
+        <div class="col-lg-2">
+          {{action.points}}
+        </div>
+      </div>
     </div>
   </div>
   <div ng-show="not_found" class="ng-hide">
