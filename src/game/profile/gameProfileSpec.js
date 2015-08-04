@@ -55,7 +55,6 @@ describe('Game Profile', function () {
 			httpBackend.flush();
 
 			//then:
-			console.log(result)
 			assert(result.name == 'Destroy the evil');
 		});
 	});

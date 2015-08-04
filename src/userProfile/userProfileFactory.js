@@ -1,4 +1,4 @@
-user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFactory", function ($http, sessionStorageFactory){
+user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorageFactory", function ($http, $q, sessionStorageFactory){
 
 	var service = {};
 
@@ -20,6 +20,21 @@ user_profile_module.factory('userProfileFactory', ["$http", "sessionStorageFacto
             	}
                 return callback("Something goes wrong :S");
 			});
+	};
+
+	service.listOfGames = function(username){
+
+		var def = $q.defer();
+
+		$http.get('http://localhost:3023/' + username + '/games')
+			.success(function(data) {
+				def.resolve(data);
+			})
+			.error(function(error, status) {
+                def.reject("Some error occur");
+			});
+
+		return def.promise;
 	};
 
 	service.hasToken = function (){

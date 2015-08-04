@@ -4,11 +4,17 @@ describe('User profile ', function () {
 
   describe('Controller', function () {
 
-    var userProfileCtrl, userProfileFactoryMock, scope;
+    var userProfileCtrl, userProfileFactoryMock, scope, q, deferred;
 
-    beforeEach(inject(function ($controller, $rootScope) {
+    beforeEach(inject(function ($controller, $rootScope, $q) {
       //given:
-      userProfileFactoryMock = {userInfo: sinon.spy(), redirectToLogin: sinon.spy(), hasToken: sinon.spy()};
+      userProfileFactoryMock = {userInfo: sinon.spy(), redirectToLogin: sinon.spy(), hasToken: sinon.spy(), listOfGames: function (username) {
+          deferred = q.defer();
+          deferred.resolve("Destroy-the-evil");
+          return deferred.promise;
+        }};
+
+      q = $q;
       scope = $rootScope.$new();
       userProfileCtrl = $controller('userProfileCtrl', {
         $scope: scope, $routeParams: {username: "TonyStark"}, userProfileFactory: userProfileFactoryMock

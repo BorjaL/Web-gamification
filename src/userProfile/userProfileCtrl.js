@@ -20,6 +20,12 @@ user_profile_module.controller('userProfileCtrl', ['$scope', '$routeParams', 'us
                 $scope.user_info.is_owner = is_owner;
             }
         });
+
+         userProfileFactory.listOfGames($routeParams.username)
+                .then(function(list_of_games){
+                    console.log("");
+                    $scope.list_of_games = list_of_games;
+                }, function(data){});
     };
 
    
