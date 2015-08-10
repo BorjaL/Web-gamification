@@ -3,4 +3,6 @@ header_module.controller('headerCtrl', ['$scope', 'headerFactory', function($sco
     $scope.logOut = headerFactory.logOut;
 
     $scope.isTokenActive = headerFactory.isTokenActive;
+
+    $scope.username = headerFactory.getUsernameFromStorage();
 }]);
