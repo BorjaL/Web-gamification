@@ -1,8 +1,9 @@
 session_module.factory('sessionStorageFactory',["$window", function ($window){
 	var service = {};
 
-	service.removeSessionToken = function(){
+	service.removeSessionInfo = function(){
 		$window.localStorage.removeItem('user_token');
+		$window.localStorage.removeItem('username');
 	};
 
 	service.getSessionToken = function(){
@@ -15,6 +16,14 @@ session_module.factory('sessionStorageFactory',["$window", function ($window){
 
 	service.hasSessionToken = function(){
 		return $window.localStorage.getItem('user_token') !== null;
+	};
+
+	service.setUsername = function(username){
+		$window.localStorage.setItem('username', username);
+	};
+
+	service.getUsername = function(){
+		return $window.localStorage.getItem('username');
 	};
 
 	return service;

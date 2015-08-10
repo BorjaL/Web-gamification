@@ -2,12 +2,16 @@ header_module.factory('headerFactory',["$window", "sessionStorageFactory",functi
 	var service = {};
 
 	service.logOut = function(){
-		sessionStorageFactory.removeSessionToken();
+		sessionStorageFactory.removeSessionInfo();
 		service.redirect();
 	};
 
 	service.isTokenActive = function(){
 		return sessionStorageFactory.hasSessionToken();
+	};
+
+	service.getUsernameFromStorage = function(){
+		return sessionStorageFactory.getUsername();
 	};
 
 	service.redirect = function(){

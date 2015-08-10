@@ -9,6 +9,7 @@ login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$locatio
 			.success(function(data) {
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);
+					sessionStorageFactory.setUsername(data.username);
 					$location.path('/'+data.username).replace();
 				}
 				else{
