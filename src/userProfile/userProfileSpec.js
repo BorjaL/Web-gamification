@@ -45,7 +45,7 @@ describe('User profile ', function () {
     afterEach(function() {
       httpBackend.verifyNoOutstandingExpectation();
       httpBackend.verifyNoOutstandingRequest();
-      sessionStorageFactory.removeSessionToken();
+      sessionStorageFactory.removeSessionInfo();
     });
 
     it('test if there are a token in the local storage', function(){

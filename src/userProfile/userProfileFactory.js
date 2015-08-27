@@ -7,7 +7,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorag
 		$http.get('http://localhost:3023/players/' + username)
 			.success(function(data) {
 				if (!data.is_active){
-					sessionStorageFactory.removeSessionToken();
+					sessionStorageFactory.removeSessionInfo();
 				}
 				callback(null, data.player, data.is_owner);
 			})

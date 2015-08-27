@@ -38,7 +38,7 @@ describe('Header', function () {
 
     beforeEach(inject(function (_sessionStorageFactory_, _headerFactory_) {
       sessionStorageFactory = _sessionStorageFactory_;
-      sessionStorageFactory.removeSessionToken = sinon.spy();
+      sessionStorageFactory.removeSessionInfo = sinon.spy();
       sessionStorageFactory.hasSessionToken = sinon.spy()
       headerFactory = _headerFactory_;
       headerFactory.redirect = sinon.spy();
@@ -50,7 +50,7 @@ describe('Header', function () {
       headerFactory.logOut();
 
       //then:
-      sessionStorageFactory.removeSessionToken.should.have.been.calledOnce;
+      sessionStorageFactory.removeSessionInfo.should.have.been.calledOnce;
       headerFactory.redirect.should.have.been.calledOnce;
     });
 

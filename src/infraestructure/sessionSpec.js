@@ -22,7 +22,7 @@ describe('Session', function () {
 
 		it('not add header authorization', function(){
 			//given:
-			sessionStorageFactory.removeSessionToken()
+			sessionStorageFactory.removeSessionInfo()
 
 			//when:
 			var result = sessionInjector.request({headers: []})
@@ -47,7 +47,7 @@ describe('Session', function () {
 			window.localStorage.setItem('user_token', "token");
 
 			//when:
-			sessionStorageFactory.removeSessionToken();
+			sessionStorageFactory.removeSessionInfo();
 
 			//then:
 			expect(window.localStorage.getItem('user_token')).to.be.null;
