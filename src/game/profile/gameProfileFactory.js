@@ -20,6 +20,21 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 		return def.promise;
 	};
 
+	service.completeAnAction = function(game_name, action_info){
+
+		var def = $q.defer();
+
+		$http.post('http://localhost:3023/actions', {game_name: game_name, action_info: action_info})
+			.success(function(data) {
+				def.resolve(data);
+			})
+			.error(function(error, status) {
+                def.reject("Some error occur");
+			});
+
+		return def.promise;
+	};
+
 
 
 	return service;

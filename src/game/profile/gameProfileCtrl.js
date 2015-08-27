@@ -13,5 +13,16 @@ game_module.controller('gameProfileCtrl', ['$scope', '$routeParams', 'gameProfil
                     });
     };
 
+    $scope.completeAction = function (action){
+        gameProfileFactory.completeAnAction($scope.game_info.name, action).then(
+            function(data){
+                console.log(data);
+            },
+            function(error){
+                console.log(error);
+            }
+        );
+    };
+
    
 }]);
