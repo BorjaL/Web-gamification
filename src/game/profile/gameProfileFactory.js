@@ -35,6 +35,38 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 		return def.promise;
 	};
 
+	service.createLeaderBoard = function(players, activity){
+
+		var leaderboard = [];
+		
+		for (var player_count in players){
+
+			leaderboard[player_count] = {name: players[player_count], points : 0};
+
+			for (var activity_count in activity){
+
+				if (activity[activity_count].player === players[player_count]){
+					leaderboard[player_count].points = leaderboard[player_count].points + parseInt(activity[activity_count].points);
+				}
+			}
+		}
+
+		return leaderboard;
+	};
+
+	service.addCompletedActionToLeaderBoard = function (leaderboard, action_completed){
+
+		for (var player_count in leaderboard){
+
+			if (leaderboard[player_count].name === action_completed.player){
+				
+				leaderboard[player_count].points += parseInt(action_completed.points);
+			}
+		}
+
+		return leaderboard;
+	};
+
 
 
 	return service;

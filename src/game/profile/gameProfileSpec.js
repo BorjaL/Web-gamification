@@ -12,7 +12,8 @@ describe('Game Profile', function () {
 					deferred = q.defer();
 					deferred.resolve({name: "Destroy-the-evil"});
 					return deferred.promise;
-				}
+				},
+				createLeaderBoard: function (players, activity){ return [] }
 			};
 
 			q = $q;
