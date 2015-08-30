@@ -29,7 +29,7 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 				def.resolve(data);
 			})
 			.error(function(error, status) {
-                def.reject("Some error occur");
+				def.reject("Some error occur");
 			});
 
 		return def.promise;
@@ -67,7 +67,20 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 		return leaderboard;
 	};
 
+	service.joinTheGame = function (game_url){
+		
+		var def = $q.defer();
 
+		$http.post('http://localhost:3023/games/join', {game_url: game_url})
+			.success(function(data) {
+				def.resolve(data);
+			})
+			.error(function(error, status) {
+                def.reject("Some error occur");
+			});
+
+		return def.promise;
+	};
 
 	return service;
 }]);

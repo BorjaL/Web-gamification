@@ -5,6 +5,7 @@
       <div class="row" ng-init="initGameInfo()">
         <h1>{{game_info.name}}</h1>
       </div>
+      <button class="btn btn-primary" ng-hide="game_info.userIsAPlayer" ng-click="joinTheGame()">Join</button>
       <div class="form-group" ng-repeat="action in game_info.actions">
         <div class="col-lg-4">
           {{action.name}}

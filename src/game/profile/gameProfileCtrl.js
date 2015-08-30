@@ -26,5 +26,16 @@ game_module.controller('gameProfileCtrl', ['$scope', '$routeParams', 'gameProfil
         );
     };
 
+    $scope.joinTheGame = function(){
+        gameProfileFactory.joinTheGame($scope.game_info.url).then(
+            function(data){
+                console.log(data);
+            },
+            function(error){
+                console.log(error);
+            }
+        );
+    };
+
    
 }]);
