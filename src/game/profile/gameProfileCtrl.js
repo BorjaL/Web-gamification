@@ -29,7 +29,7 @@ game_module.controller('gameProfileCtrl', ['$scope', '$routeParams', 'gameProfil
     $scope.joinTheGame = function(){
         gameProfileFactory.joinTheGame($scope.game_info.url).then(
             function(data){
-                console.log(data);
+                $scope.game_info.userIsAPlayer = true;
             },
             function(error){
                 console.log(error);
