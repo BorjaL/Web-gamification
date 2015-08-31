@@ -23,7 +23,6 @@ user_profile_module.controller('userProfileCtrl', ['$scope', '$routeParams', 'us
 
          userProfileFactory.listOfGames($routeParams.username)
                 .then(function(list_of_games){
-                    console.log(list_of_games);
                     $scope.list_of_games = list_of_games;
                 }, function(error){
                     console.log(error);
