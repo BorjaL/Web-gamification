@@ -28,7 +28,6 @@ user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorag
 
 		$http.get('http://localhost:3023/' + username + '/games')
 			.success(function(data) {
-				console.log("quiero que funcione");
 				def.resolve(data);
 			})
 			.error(function(error, status) {
