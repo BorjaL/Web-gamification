@@ -19,7 +19,7 @@
       </div>
 
       <div class="form-group" ng-repeat="player in leaderboard">
-        {{player.name}} - {{player.points}}
+        <user-info data-username="{{player.name}}"></user-info> - {{player.points}}
 
       </div>
     </div>
