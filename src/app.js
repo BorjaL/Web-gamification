@@ -34,3 +34,5 @@ app.config(['$routeProvider', '$locationProvider',
   }]).config(['$httpProvider', function($httpProvider) {  
     $httpProvider.interceptors.push('sessionInjector');
   }]);
+
+  app.value('redirectToUrlAfterLogin', { url: '/' });

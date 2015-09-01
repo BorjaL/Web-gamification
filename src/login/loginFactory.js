@@ -1,4 +1,4 @@
-login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
+login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$location", "redirectToUrlAfterLogin", function ($http, sessionStorageFactory, $location, redirectToUrlAfterLogin){
 	var service = {};
 
 	service.login = function(login_data, callback){
@@ -10,7 +10,7 @@ login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$locatio
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);
 					sessionStorageFactory.setUsername(data.username);
-					$location.path('/'+data.username).replace();
+					$location.path(redirectToUrlAfterLogin.url).replace();
 				}
 				else{
 					return callback(null, data.message);
