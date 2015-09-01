@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 	
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
-	grunt.registerTask('min', ['test', 'jshint', 'clean', 'concat', 'uglify']);
+	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
 	grunt.registerTask('build', ['min', 'copy']);
 
 	grunt.registerTask('default', ['build', 'connect']);
