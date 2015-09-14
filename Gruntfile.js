@@ -64,9 +64,16 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'src/', src: ['index.html'], dest: 'app/'}
 				]
 			},
-			css: {
-				src: 'css/*',
+			videos: {
+				src: 'videos/*',
 				dest: 'app/',
+			}
+		},
+		sass: {
+			dist: {
+				files: {
+					'app/css/gamis.css': 'css/gamis.scss'
+				}
 			}
 		},
 
@@ -76,7 +83,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
-	grunt.registerTask('build', ['min', 'copy']);
+	grunt.registerTask('build', ['min', 'copy', 'sass']);
 
 	grunt.registerTask('default', ['build', 'connect']);
 };
