@@ -1,6 +1,8 @@
 @import 'navigation';
+@import 'forms';
+@import 'mainCharacters';
 
-$font-stack:    Helvetica, sans-serif;
+$font-stack:	'Open Sans', serif;
 
 html {
 	font-family: $font-stack;
@@ -37,43 +39,4 @@ video#homeBackground {
 	outline: 0;
 	background-color: black;
 	opacity: 0.3;
-}
-
-.container {
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	padding-top: 200px;
-	padding-bottom: 250px;
-	text-align: center;
-
-	h1{
-		font-size: 100px;
-		margin-bottom: 10px;
-	}
-
-	p{
-		font-size: 20px;
-		margin-bottom: 40px;
-	}
-}
-
-input{
-	border: 1px solid #fff;
-	border-radius: .25rem;
-	font-size: 1.176rem;
-	padding: .7rem;
-	width: 290px;
-	margin-right: 10px;
-}
-
-button{
-	width: 260px;
-	cursor: pointer;
-	border: 1px solid #56B68B;
-	border-radius: 4px;
-	background: #56B68B;
-	color: #FFF;
-	font-size: 1.176rem;
-	padding: .7rem;
 }

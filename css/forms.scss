@@ -1,0 +1,21 @@
+$mainPadding:	.7rem;
+
+input.mainCallToAction{
+	border: 1px solid #fff;
+	border-radius: .25rem;
+	font-size: 1.176rem;
+	padding: $mainPadding;
+	width: 290px;
+	margin-right: 10px;
+}
+
+button.mainCallToAction{
+	width: 260px;
+	cursor: pointer;
+	border: 1px solid #56B68B;
+	border-radius: 4px;
+	background: #56B68B;
+	color: #FFF;
+	font-size: 1.176rem;
+	padding: $mainPadding;
+}
