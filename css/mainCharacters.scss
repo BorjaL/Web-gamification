@@ -1,18 +1,48 @@
+
+@media (min-width:1025px) { 
+    .global-container {
+        margin-top: 0;
+        background-image: none;
+    }
+}
 .mainAction {
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	padding-top: 200px;
-	padding-bottom: 250px;
 	text-align: center;
+	font-size: 20px;
+
+	@media (min-width:1200px) { 
+		padding-top: 200px;
+	}
+	@media (min-width:992px) { 
+		padding-top: 150px;
+	}
+	@media (min-width:768px) { 
+		padding-top: 125px;
+	}
+	@media (max-width:767px) { 
+		padding-top: 75px;
+	}
 
 	h1{
-		font-size: 100px;
 		margin-bottom: 10px;
+		@media (min-width:1200px) { 
+			font-size: 100px;
+		}
+		@media (min-width:992px) { 
+			font-size: 90px;
+		}
+		@media (min-width:768px) { 
+			font-size: 80px;
+		}
+		@media (max-width:767px) { 
+			font-size: 50px;
+		}
+
 	}
 
 	p{
-		font-size: 20px;
 		margin-bottom: 40px;
 	}
 }

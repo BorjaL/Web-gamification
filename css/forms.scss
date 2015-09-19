@@ -1,21 +1,30 @@
-$mainPadding:	.7rem;
+$mainPadding:		.7rem;
+$mainBorderRadius:	.25rem;
+$mainFontSize:		1em;
 
 input.mainCallToAction{
 	border: 1px solid #fff;
-	border-radius: .25rem;
-	font-size: 1.176rem;
+	border-radius: $mainBorderRadius;
+	width: 260px;
+	font-size: $mainFontSize;
 	padding: $mainPadding;
-	width: 290px;
-	margin-right: 10px;
+
+	@media (min-width:597px) { 
+		margin-right: 10px;
+	}
 }
 
 button.mainCallToAction{
-	width: 260px;
-	cursor: pointer;
 	border: 1px solid #56B68B;
-	border-radius: 4px;
+	border-radius: $mainBorderRadius;
+	width: 282px;
+	font-size: $mainFontSize;
+	padding: $mainPadding;
+	cursor: pointer;
 	background: #56B68B;
 	color: #FFF;
-	font-size: 1.176rem;
-	padding: $mainPadding;
+
+	@media (max-width:597px) { 
+		margin-top: 10px;
+	}
 }
