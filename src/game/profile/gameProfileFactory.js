@@ -11,10 +11,10 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 				def.resolve(data);
 			})
 			.error(function(error, status) {
-            	if (status === 404){
-            		def.reject(status);
-            	}
-                def.reject("Some error occur");
+				if (status === 404){
+					def.reject(status);
+				}
+				def.reject("Some error occur");
 			});
 
 		return def.promise;
@@ -76,7 +76,7 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 				def.resolve(data);
 			})
 			.error(function(error, status) {
-                def.reject("Some error occur");
+				def.reject("Some error occur");
 			});
 
 		return def.promise;
