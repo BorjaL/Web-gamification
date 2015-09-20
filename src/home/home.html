@@ -12,11 +12,11 @@
 		</li>
 	</ul>
 </nav>
-<div class="mainAction">
+<div class="mainAction" ng-controller="homeCtrl">
 	<h1>
 		<span class="text-white">Challenge your limits</span>
 	</h1>
 	<p class="text-white">Gamis gives the opportunity to teams to be more efficient, more pleasant, and more productive</p>
-	<input type="text" placeholder="Email address" class="mainCallToAction">
-	<button type="submit" class="btn mainCallToAction">Join our beta program</button>
+	<input type="text" ng-model="new_lead" placeholder="Email address" class="mainCallToAction">
+	<button class="btn mainCallToAction" ng-click="sendNewLead()">Join our beta program</button>
 </div>

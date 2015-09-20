@@ -4,7 +4,8 @@ var app = angular.module('app',
 						 'register', 
 						 'userProfile',
 						 'header',
-             'game']);
+             'game',
+             'home']);
 
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
