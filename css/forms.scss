@@ -28,3 +28,7 @@ button.mainCallToAction{
 		margin-top: 10px;
 	}
 }
+
+button.mainCallToAction:focus {
+	outline:0;
+}
