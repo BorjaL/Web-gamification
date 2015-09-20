@@ -9,12 +9,18 @@ module.exports = function(grunt) {
 					host: 'localhost',
 					port: 9000,
 					base: 'app',
-					keepalive: true,
+					livereload: true,
 					middleware: function (connect, options) {
 						var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
 						return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(optBase.map(function(path){ return connect.static(path); }));
 					}
 				}
+			}
+		},
+		watch: {
+			all: {
+				files: ['src/**/*.*', 'css/**/*', 'videos/**/*'],
+				tasks: ['build']
 			}
 		},
 	    karma: {
@@ -85,5 +91,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
 	grunt.registerTask('build', ['min', 'copy', 'sass']);
 
-	grunt.registerTask('default', ['build', 'connect']);
+	grunt.registerTask('default', ['build', 'connect', 'watch']);
 };
