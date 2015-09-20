@@ -18,6 +18,6 @@
 	</h1>
 	<p class="text-white">Gamis gives the opportunity to teams to be more efficient, more pleasant, and more productive</p>
 	<input type="email" ng-model="new_lead" placeholder="Email address" class="mainCallToAction">
-	<button class="btn mainCallToAction" ng-click="sendNewLead()">Join our beta program</button>
+	<button class="btn mainCallToAction" ng-disabled="disable_button" ng-click="sendNewLead()">Join our beta program</button>
 	<p id="thankYouLead" class="text-white">{{thank_you_message}}</p>
 </div>
