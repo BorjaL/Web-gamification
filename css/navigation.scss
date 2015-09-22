@@ -1,4 +1,4 @@
-nav {
+nav.transparent {
 	position: relative;
 	top: 0;
 	width: 100%;
@@ -57,5 +57,28 @@ nav {
 			box-shadow:inset 0 0 0 2px #fff,0 1px 1px rgba(0,0,0,.1);
 			background:0 0;
 		}
+	}
+}
+
+nav.opaque {
+	background: #FFF;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	position: fixed;
+    top: 0;
+    height: 70px;
+	width: 100%;
+	z-index: 1;
+
+	a {
+		text-decoration: none;
+	}
+
+	.logo{
+		color: #555459;
+		height: 30px;
+		width: 106px;
+		float: left;
+		margin: 20px 0 0 20px;
+		font-size: 2rem;
 	}
 }
