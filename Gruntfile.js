@@ -9,7 +9,6 @@ module.exports = function(grunt) {
 					host: 'localhost',
 					port: 9000,
 					base: 'app',
-					livereload: true,
 					middleware: function (connect, options) {
 						var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
 						return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(optBase.map(function(path){ return connect.static(path); }));
@@ -19,7 +18,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			all: {
-				files: ['src/**/*.*', 'css/**/*', 'videos/**/*'],
+				files: ['src/**/*.*', 'css/**/*.*', 'videos/**/*.*'],
 				tasks: ['build']
 			}
 		},
