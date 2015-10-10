@@ -4,7 +4,7 @@
 	margin: 0 auto;
 }
 
-.span_4_of_6 {
+.col_4_of_6 {
 	width: 66.13%;
 }
 
@@ -42,4 +42,15 @@
 .full_width {
     width: 100%;
     max-width: 100%;
+}
+
+footer {
+    border-top: 1px solid #E8E8E8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFF;
+    padding: 60px 0;
+    color: #9E9EA6;
 }
