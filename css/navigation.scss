@@ -1,20 +1,20 @@
-nav.transparent {
-	position: relative;
-	top: 0;
+nav {
 	width: 100%;
 	z-index: 1;
+	top: 0;	
+	
+	.logo{
+		float: left;
+		margin: 10px 0 0 20px;
+	}
 
 	a {
 		text-decoration: none;
 	}
+}
 
-	.logo{
-		height: 30px;
-		width: 106px;
-		float: left;
-		margin: 20px 0 0 20px;
-		font-size: 2rem;
-	}
+nav.transparent {
+	position: relative;
 
 	ul {
 		list-style-type: none;
@@ -64,21 +64,5 @@ nav.opaque {
 	background: #FFF;
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
 	position: fixed;
-    top: 0;
     height: 80px;
-	width: 100%;
-	z-index: 1;
-
-	a {
-		text-decoration: none;
-	}
-
-	.logo{
-		color: #555459;
-		height: 30px;
-		width: 106px;
-		float: left;
-		margin: 20px 0 0 20px;
-		font-size: 2rem;
-	}
 }
