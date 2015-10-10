@@ -4,7 +4,7 @@
 </video>
 <div id="videoBackground"></div>
 <nav class="transparent">
-	<a href="/" class="text-white logo">gamis</a>
+	<a href="/" class="logo"><img witdth="100" height="60" src="videos/NoShadowBlanco.png"></a>
 	<ul>
 		<li>
 			<a href="/login" class="btn">Sign in</a>
@@ -13,10 +13,10 @@
 </nav>
 <div class="mainAction" ng-controller="homeCtrl">
 	<h1>
-		<span class="text-white">Change the way your <i>team</i> is motivated</span>
+		<span class="text-white">Change the way your <span class="pacifico">team</span> is motivated</span>
 	</h1>
 	<p class="text-white">Gamis gives the opportunity to teams to be more efficient, more pleasant, and more productive</p>
 	<input type="email" ng-model="new_lead" placeholder="Email address" class="mainCallToAction">
-	<button class="btn mainCallToAction botton_good_thing" ng-disabled="disable_button" ng-click="sendNewLead()">Join our beta program</button>
+	<button class="btn mainCallToAction botton_good_thing" ng-disabled="disable_button" ng-click="sendNewLead()">I'm an early adopter!</button>
 	<p id="thankYouLead" class="text-white">{{thank_you_message}}</p>
 </div>
