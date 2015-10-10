@@ -1,7 +1,8 @@
 nav {
 	width: 100%;
 	z-index: 1;
-	top: 0;	
+	top: 0;
+	position: relative;
 	
 	.logo{
 		float: left;
@@ -14,7 +15,6 @@ nav {
 }
 
 nav.transparent {
-	position: relative;
 
 	ul {
 		list-style-type: none;
@@ -63,6 +63,5 @@ nav.transparent {
 nav.opaque {
 	background: #FFF;
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
-	position: fixed;
     height: 80px;
 }
