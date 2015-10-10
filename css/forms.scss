@@ -1,6 +1,7 @@
 $mainPadding:		.7rem;
 $mainBorderRadius:	.25rem;
 $mainFontSize:		1em;
+$primaryColor:		#42b8dd;
 
 input[type=text],
 input[type=email],
@@ -19,7 +20,7 @@ input.login {
 
 input.mainCallToAction{
 	border: 1px solid #fff;
-	width: 260px;
+	width: 282px;
 
 	@media (min-width:597px) { 
 		margin-right: 10px;
@@ -27,7 +28,6 @@ input.mainCallToAction{
 }
 
 button.mainCallToAction{
-	border: 1px solid #56B68B;
 	border-radius: $mainBorderRadius;
 	width: 282px;
 	font-size: $mainFontSize;
@@ -36,10 +36,6 @@ button.mainCallToAction{
 	@media (max-width:597px) { 
 		margin-top: 10px;
 	}
-}
-
-button.mainCallToAction:focus {
-	outline:0;
 }
 
 .btn_large {
@@ -58,9 +54,10 @@ button.mainCallToAction:focus {
 	text-shadow: 0 1px 1px rgba(0,0,0,.1);
 	border: none;
 	border-radius: $mainBorderRadius;
+	outline:0;
 }
 
 .botton_good_thing {
-	background: #2ab27b;
+	background: $primaryColor;
 	font-weight: 500;
 }

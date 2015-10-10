@@ -5,7 +5,7 @@
 
 $font-stack:	'Open Sans', serif;
 
-body {
+html body {
 	margin: 0;
 	background: #f9f9f9;
 	font-family: $font-stack;
@@ -13,10 +13,19 @@ body {
 	color: #555459;
 }
 
+.logo_font {
+	font-family: 'Pacifico';
+}
+
 *{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 
+a, a:link, a:visited {
+    color: #439fe0;
+    text-decoration: none;
+}
+
 .text-white {
-	color: white;
+	color: white!important;
 }
 
 video#homeBackground {
