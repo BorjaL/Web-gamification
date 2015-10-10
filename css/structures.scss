@@ -1,11 +1,27 @@
 #login_content {
-	width: 64pc;
 	padding: 150px 30px;
 	margin: 0 auto;
 }
 
 .col_4_of_6 {
 	width: 66.13%;
+}
+
+.col_2_of_6 {
+    width: 33.13%;
+
+    @media (min-width:768px) { 
+        min-width: 400px;
+    }
+    @media (min-width:992px) { 
+        min-width: 400px;
+    }
+    @media (min-width:1200px) { 
+        min-width: 500px;
+    }
+    @media (max-width:767px) { 
+        min-width: 350px;
+    }
 }
 
 .margin_auto {
@@ -42,15 +58,4 @@
 .full_width {
     width: 100%;
     max-width: 100%;
-}
-
-footer {
-    border-top: 1px solid #E8E8E8;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #FFF;
-    padding: 60px 0;
-    color: #9E9EA6;
 }
