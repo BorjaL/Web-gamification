@@ -1,5 +1,16 @@
 #login_content {
-	padding: 150px 30px;
+    @media (min-width:768px) { 
+         padding: 75px 30px;
+    }
+    @media (min-width:992px) { 
+         padding: 100px 30px;
+    }
+    @media (min-width:1200px) { 
+        padding: 150px 30px;
+    }
+    @media (max-width:767px) { 
+         padding: 50px 30px;
+     }
 	margin: 0 auto;
 }
 
@@ -37,6 +48,18 @@
     margin: 0 auto 2rem;
     position: relative;
     border: 1px solid #e8e8e8;
+}
+
+.box_error {
+    border:1px solid #eee;
+    border-left-width:5px;
+    border-radius: 3px;
+    padding: 1rem 2rem 1rem;
+    margin: 0 auto 1rem;
+    //background-color: #f2dede;
+    background-color: #fff;
+    //color: #b94a48;
+    border-left-color: #d9534f;
 }
 
 .align_center {

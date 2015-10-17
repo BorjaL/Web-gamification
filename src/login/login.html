@@ -2,9 +2,7 @@
 	<a href="/" class="logo"><img witdth="100" height="60" src="videos/NoShadow.png"></a>
 </nav>
 <div id="login_content" ng-controller="loginCtrl">
-
-	<div class="col_4_of_6 align_center" ng-show="show_error">
-		<button type="button" class="close" ng-click="show_error = false">x</button>
+	<div class="col_2_of_6 box_error" ng-show="show_error">
 		{{message}}
 	</div>
 	<div class="col_2_of_6 margin_auto align_center box">
