@@ -1,4 +1,4 @@
-session_module.factory('sessionInjector', ["sessionStorageFactory", "$location", "redirectToUrlAfterLogin", function(sessionStorageFactory, $location, redirectToUrlAfterLogin) {  
+session_module.factory('sessionInjector', ["sessionStorageFactory", "$location", "redirectToUrlAfterLogin", "$q", function(sessionStorageFactory, $location, redirectToUrlAfterLogin, $q) {  
     var sessionInjector = {
         request: function(config) {
             if (sessionStorageFactory.hasSessionToken()){
@@ -13,7 +13,7 @@ session_module.factory('sessionInjector', ["sessionStorageFactory", "$location",
         		sessionStorageFactory.removeSessionInfo();
         		$location.path("/login").replace();
         	}
-        	return rejection;
+        	return $q.reject(rejection);
         }
     };
     return sessionInjector;
