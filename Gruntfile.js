@@ -72,6 +72,11 @@ module.exports = function(grunt) {
 			videos: {
 				src: 'videos/*',
 				dest: 'app/',
+			},
+			miscelania: {
+				dot: true,
+				src: 'src/.htaccess',
+				dest: 'app/.htaccess',
 			}
 		},
 		sass: {
