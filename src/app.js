@@ -14,9 +14,9 @@ app.config(['$routeProvider', '$locationProvider',
       when('/', {
         templateUrl: "html/home/home.html"
       }).
-      when('/register', {
-        templateUrl: "html/register/register.html"
-      }).
+//      when('/register', {
+//        templateUrl: "html/register/register.html"
+//      }).
       when('/login', {
         templateUrl: "html/login/login.html"
       }).
