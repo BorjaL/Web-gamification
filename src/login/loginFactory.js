@@ -5,7 +5,7 @@ login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$locatio
 		if (!service.validate_params(login_data)){
 			return callback(null, "Wrong credentials");
 		}
-		$http.post('http://localhost:3023/players/login.json', login_data)
+		$http.post('http://gamisfan.com:3023/players/login.json', login_data)
 			.success(function(data) {
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);

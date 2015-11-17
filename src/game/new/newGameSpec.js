@@ -82,7 +82,7 @@ describe('New Game', function () {
 
 		it('returns true if the api give permission to the user to create a game', function (){
 			//given:
-			httpBackend.expectGET('http://localhost:3023/permission/createGame').respond(true);
+			httpBackend.expectGET('http://gamisfan.com:3023/permission/createGame').respond(true);
 
 			//when:
 			var promise = newGameFactory.userCanCreateAGame(), result;
@@ -98,7 +98,7 @@ describe('New Game', function () {
 
 		it('api return an error', function (){
 			//given:
-			httpBackend.expectGET('http://localhost:3023/permission/createGame').respond(500);
+			httpBackend.expectGET('http://gamisfan.com:3023/permission/createGame').respond(500);
 
 			//when:
 			var promise = newGameFactory.userCanCreateAGame(), result;
@@ -117,7 +117,7 @@ describe('New Game', function () {
 
 		it('when the game is created redirect to the game profile', function (){
 			//given:
-			httpBackend.expectPOST('http://localhost:3023/games.json',{}).respond(204, "/owner/games/game_path");
+			httpBackend.expectPOST('http://gamisfan.com:3023/games.json',{}).respond(204, "/owner/games/game_path");
 
 			//when:
 			newGameFactory.createGame({});

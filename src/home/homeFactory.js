@@ -5,7 +5,7 @@ home_module.factory('homeFactory',["$http", "$q", function ($http, $q){
 
 		var def = $q.defer();
 
-		$http.post('http://localhost:3023/leads', {new_lead_mail: new_lead_mail})
+		$http.post('http://gamisfan.com:3023/leads', {new_lead_mail: new_lead_mail})
 			.success(function(data) {
 				def.resolve(data);
 			})

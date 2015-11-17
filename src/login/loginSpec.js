@@ -59,7 +59,7 @@ describe('Login ', function () {
     it('login function save the token and redirect to the user page', function(){
       
       //given:
-      httpBackend.expectPOST('http://localhost:3023/players/login.json').respond({token: 'token', username: "ToniStark"});
+      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond({token: 'token', username: "ToniStark"});
 
       //when:
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});

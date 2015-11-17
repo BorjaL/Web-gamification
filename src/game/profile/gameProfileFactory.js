@@ -6,7 +6,7 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 
 		var def = $q.defer();
 
-		$http.get('http://localhost:3023/games/' + username + '/' + game_url)
+		$http.get('http://gamisfan.com:3023/games/' + username + '/' + game_url)
 			.success(function(data) {
 				def.resolve(data);
 			})
@@ -24,7 +24,7 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 
 		var def = $q.defer();
 
-		$http.post('http://localhost:3023/actions', {game_name: game_name, action_info: action_info})
+		$http.post('http://gamisfan.com:3023/actions', {game_name: game_name, action_info: action_info})
 			.success(function(data) {
 				def.resolve(data);
 			})
@@ -71,7 +71,7 @@ game_module.factory('gameProfileFactory', ["$http", "$q", function ($http, $q){
 		
 		var def = $q.defer();
 
-		$http.post('http://localhost:3023/games/join', {game_url: game_url})
+		$http.post('http://gamisfan.com:3023/games/join', {game_url: game_url})
 			.success(function(data) {
 				def.resolve(data);
 			})

@@ -7,7 +7,7 @@ register_module.factory('registerFactory', ["$http", "sessionStorageFactory", "$
 		if (!service.validate_params(register_data)){
 			return callback(null, "Wrong fields");
 		}
-		$http.post('http://localhost:3023/players.json', register_data)
+		$http.post('http://gamisfan.com:3023/players.json', register_data)
 			.success(function(data) {
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);

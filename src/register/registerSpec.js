@@ -61,7 +61,7 @@ describe('Register Functionality', function () {
     it('register a user redirect me to the user page', function(){
 
       //given:
-      httpBackend.expectPOST('http://localhost:3023/players.json').respond({token: 'token', username: 'ToniStark'});
+      httpBackend.expectPOST('http://gamisfan.com:3023/players.json').respond({token: 'token', username: 'ToniStark'});
 
       //when:
       registerFactory.register({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -77,7 +77,7 @@ describe('Register Functionality', function () {
 
       //given:
       var result = "";
-      httpBackend.expectPOST('http://localhost:3023/players.json')
+      httpBackend.expectPOST('http://gamisfan.com:3023/players.json')
                  .respond(function (method, url, data, headers) {
                     return [409, 'username already exists'];
                  });

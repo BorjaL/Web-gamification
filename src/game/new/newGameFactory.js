@@ -6,7 +6,7 @@ game_module.factory('newGameFactory', ["$http", "$q", "$location", function ($ht
 
 		var def = $q.defer();
 
-		$http.get('http://localhost:3023/permission/createGame')
+		$http.get('http://gamisfan.com:3023/permission/createGame')
 			.success(function(data) {
 				def.resolve(true);
 			})
@@ -20,7 +20,7 @@ game_module.factory('newGameFactory', ["$http", "$q", "$location", function ($ht
 	};
 
 	service.createGame = function(game_data){
-		$http.post('http://localhost:3023/games.json', game_data)
+		$http.post('http://gamisfan.com:3023/games.json', game_data)
 			.success(function(data) {
 				service.redirect(data);
 			})

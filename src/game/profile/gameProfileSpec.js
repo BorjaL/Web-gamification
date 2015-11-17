@@ -45,7 +45,7 @@ describe('Game Profile', function () {
 
 		it('returns the game info', function (){
 			//given:
-			httpBackend.expectGET('http://localhost:3023/games/ToniStark/DestroyTheEvil').respond(200, {name: 'Destroy the evil'});
+			httpBackend.expectGET('http://gamisfan.com:3023/games/ToniStark/DestroyTheEvil').respond(200, {name: 'Destroy the evil'});
 
 			//when:
 			var promise = gameProfileFactory.gameInfo('ToniStark', 'DestroyTheEvil'), result;
