@@ -1,0 +1,19 @@
+<div ng-controller="userProfileCtrl">
+  <div ng-show="!not_found">
+  <div ng-include='"/html/header/header.html"'></div>
+  <div class="container">
+    <div class="row" ng-init="initUserInfo()">
+      <h1 ng-show="user_info.is_owner" class="ng-hide">Hola {{user_info.username}}</h1>
+      <h1 ng-show="!user_info.is_owner">Welcome to {{user_info.username}}'s profile</h1>
+      <a href="newgame/" ng-show="user_info.is_owner" class="ng-hide btn btn-default btn-lg" type="button">Create Game</a>
+      <h2>List of games</h2>
+      <ul ng-repeat="game in list_of_games">
+        <li><a href="{{game.url}}">{{game.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div ng-show="not_found" class="ng-hide">
+  	<div ng-include='"/html/404.html"'></div>
+  </div>
+</div>

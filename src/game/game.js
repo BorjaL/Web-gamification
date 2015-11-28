@@ -1,0 +1,1 @@
+var game_module = angular.module('game', []);

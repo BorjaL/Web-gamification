@@ -1,0 +1,24 @@
+<nav class="opaque">
+	<a href="/" class="logo"><img witdth="100" height="60" src="videos/NoShadow.png"></a>
+</nav>
+<div id="login_content" ng-controller="loginCtrl">
+	<div class="col_2_of_6 box_error" ng-show="show_error">
+		{{message}}
+	</div>
+	<div class="col_2_of_6 margin_auto align_center box">
+		<h1>Welcome to <span class="logo_font">Gamisfan</span></h1>
+		<div class="col_4_of_6 margin_auto">
+			<p>Enter your username and password.</p>
+			<form name="login_form">
+				<input type="text" class="login full_width" placeholder="Username" ng-model="login_data.username" name="username" >
+				<input type="password" class="login small_bottom_margin full_width" placeholder="Password" ng-model="login_data.password" name="password">
+				<button class="btn btn_large full_width botton_good_thing large_bottom_margin" ng-click="logIn(login_data)">Sign in</button>
+			</form>
+			<div class="align_center large_bottom_margin">
+				<p>
+				Don't have a user? <a href="/">Join our beta program</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

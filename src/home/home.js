@@ -1,0 +1,1 @@
+var home_module = angular.module('home', ['session']);

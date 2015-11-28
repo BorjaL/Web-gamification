@@ -1,0 +1,63 @@
+$mainPadding:		.7rem;
+$mainBorderRadius:	.25rem;
+$mainFontSize:		1em;
+$primaryColor:		#42b8dd;
+
+input[type=text],
+input[type=email],
+input[type=password]{
+	border: 1px solid #C5C5C5;
+	border-radius: $mainBorderRadius;
+	font-size: $mainFontSize;
+	padding: $mainPadding;
+	box-shadow: none;
+	height: auto;
+}
+
+input.login {
+	margin: 0 0 .5rem;
+}
+
+input.mainCallToAction{
+	border: 1px solid #fff;
+	width: 282px;
+
+	@media (min-width:597px) { 
+		margin-right: 10px;
+	}
+}
+
+button.mainCallToAction{
+	border-radius: $mainBorderRadius;
+	width: 282px;
+	font-size: $mainFontSize;
+	padding: $mainPadding;
+
+	@media (max-width:597px) { 
+		margin-top: 10px;
+	}
+}
+
+.btn_large {
+	padding: 14px 2pc 1pc;
+	font-size: 20px;
+}
+
+.btn {
+	color: #fff;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-decoration: none;
+	cursor: pointer;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1);
+	border: none;
+	border-radius: $mainBorderRadius;
+	outline:0;
+}
+
+.botton_good_thing {
+	background: $primaryColor;
+	font-weight: 500;
+}

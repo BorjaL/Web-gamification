@@ -1,0 +1,31 @@
+{
+  "name": "Web-gamification",
+  "version": "0.0.1",
+  "description": "web app for the gamification platform",
+  "author": {
+    "name": "Borja Fernandez",
+    "email": "borja.fpillado@gmail.com"
+  },
+  "devDependencies": {
+    "chai": "~1.10.0",
+    "connect-modrewrite": "^0.7.9",
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~0.9.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-uglify": "~0.6.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-karma": "~0.9.0",
+    "karma": "~0.12.25",
+    "karma-chrome-launcher": "~0.1.5",
+    "karma-mocha": "~0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon-chai": "~0.2.0",
+    "load-grunt-tasks": "~2.0.0",
+    "mocha": "~2.0.1",
+    "sinon": "~1.12.1"
+  }
+}

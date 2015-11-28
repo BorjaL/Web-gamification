@@ -1,0 +1,27 @@
+{
+  "name": "web-gamification",
+  "version": "0.0.0",
+  "homepage": "https://github.com/BorjaL/Web-gamification",
+  "authors": [
+    "Borja Fernandez Pillado <borja.fpillado@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.2",
+    "angular-mocks": "~1.4.2",
+    "angular-route": "~1.4.2"
+  },
+  "resolutions": {
+    "angular": "1.4.2",
+    "angular-mocks": "~1.4.2",
+    "angular-route": "~1.4.2"
+  }
+}

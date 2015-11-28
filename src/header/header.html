@@ -1,0 +1,15 @@
+<div class="navbar navbar-default">
+	<div class="container">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">Gamotivate</a>
+  </div>
+  <div ng-controller="headerCtrl">
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-show="isTokenActive()"><user-info data-username="{{username}}"></user-info></li>
+      <li ng-show="isTokenActive()"><a href="#" ng-click="logOut()">Sign out</a></li>
+      <li ng-show="!isTokenActive()" class="ng-hide"><a href="/login" >Log in</a></li>
+      <li ng-show="!isTokenActive()" class="ng-hide"><a href="/register" >Sign up</a></li>
+    </ul>
+  </div>
+</div>
+</div>
