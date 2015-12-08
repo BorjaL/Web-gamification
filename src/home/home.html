@@ -1,10 +1,10 @@
-
+<div id="mobileVideoBackground"></div>
 <video autoplay loop muted id="homeBackground">
-	<source src="videos/Pinball.mp4" type='video/mp4'>
+	<source src="videos/Pinball.mov"  type='video/mp4'>
 </video>
-<div id="videoBackground"></div>
+<div id="videoFilter"></div>
 <nav class="transparent">
-	<a href="/" class="logo"><img witdth="100" height="60" src="videos/NoShadowBlanco.png"></a>
+	<a href="/" class="logo"><img witdth="100" height="60" src="img/NoShadowBlanco.png"></a>
 	<ul>
 		<li>
 			<a href="/login" class="btn">Sign in</a>
@@ -15,7 +15,7 @@
 	<h1>
 		<span class="text-white">Change the way your <span class="logo_font">team</span> is motivated</span>
 	</h1>
-	<p class="text-white">Gamis gives the opportunity to teams to be more efficient, more pleasant, and more productive</p>
+	<p class="text-white">Gamisfan gives the opportunity to teams to be more efficient, more pleasant, and more productive</p>
 	<input type="email" ng-model="new_lead" placeholder="Email address" class="mainCallToAction">
 	<button class="btn mainCallToAction botton_good_thing" ng-disabled="disable_button" ng-click="sendNewLead()">I'm an early adopter!</button>
 	<p id="thankYouLead" class="text-white">{{thank_you_message}}</p>
