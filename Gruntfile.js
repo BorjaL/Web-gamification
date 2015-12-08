@@ -73,6 +73,10 @@ module.exports = function(grunt) {
 				src: 'videos/*',
 				dest: 'app/',
 			},
+			images: {
+				src: 'img/*',
+				dest: 'app/',
+			},
 			miscelania: {
 				dot: true,
 				src: 'src/.htaccess',
