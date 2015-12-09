@@ -60,7 +60,8 @@ module.exports = function(grunt) {
 			lib: {
 				files: [
 					{src: 'lib/angular/angular.min.js*', dest: 'app/script/'},
-					{src: 'lib/angular-route/angular-route.min.js*', dest: 'app/script/'}
+					{src: 'lib/angular-route/angular-route.min.js*', dest: 'app/script/'},
+					{src: 'lib/keen-js/dist/keen.min.js*', dest: 'app/script/'}
 				]
 			},
 			html: {
