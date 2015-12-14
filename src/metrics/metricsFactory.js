@@ -6,7 +6,7 @@ metrics_module.factory('metricsFactory', [function (){
 	});
 
 	return {
-		sendEvent: function(eventInfo){
+		sendUrlRequestEvent: function(eventInfo){
 
 			my_keen.addEvent("web_navigation", eventInfo, function(err, res){
 				if (err) {
