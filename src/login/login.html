@@ -1,5 +1,5 @@
 <nav class="opaque">
-	<a href="/" class="logo"><img witdth="100" height="60" src="img/NoShadow.png"></a>
+	<a href="/" class="logo" metrics-directive data-event-id="logo_header_login"><img witdth="100" height="60" src="img/NoShadow.png"></a>
 </nav>
 <div id="login_content" ng-controller="loginCtrl">
 	<div class="col_2_of_6 box_error" ng-show="show_error">
@@ -12,11 +12,11 @@
 			<form name="login_form">
 				<input type="text" class="login full_width" placeholder="Username" ng-model="login_data.username" name="username" >
 				<input type="password" class="login small_bottom_margin full_width" placeholder="Password" ng-model="login_data.password" name="password">
-				<button class="btn btn_large full_width botton_good_thing large_bottom_margin" ng-click="logIn(login_data)">Sign in</button>
+				<button class="btn btn_large full_width botton_good_thing large_bottom_margin" ng-click="logIn(login_data)" metrics-directive data-event-id="login_button_login">Sign in</button>
 			</form>
 			<div class="align_center large_bottom_margin">
 				<p>
-				Don't have a user? <a href="/">Join our beta program</a>
+				Don't have a user? <a href="/" metrics-directive data-event-id="join_beta_link_login">Join our beta program</a>
 				</p>
 			</div>
 		</div>
