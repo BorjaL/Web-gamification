@@ -6,9 +6,8 @@ metrics_module.factory('metricsFactory', [function (){
 	});
 
 	return {
-		sendUrlRequestEvent: function(eventInfo){
-
-			my_keen.addEvent("web_navigation", eventInfo, function(err, res){
+		sendEvent: function(eventInfo){
+			my_keen.addEvent(eventInfo.type, eventInfo, function(err, res){
 				if (err) {
 					console.log("Imposible to save " + err);
 				}
@@ -16,6 +15,6 @@ metrics_module.factory('metricsFactory', [function (){
 					console.log("Saved! ");
 				}
 			});
-		},
+		}
 	};
 }]);

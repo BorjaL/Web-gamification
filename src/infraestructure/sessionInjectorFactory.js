@@ -1,14 +1,15 @@
 session_module.factory('sessionInjector', ["sessionStorageFactory", "$location", "redirectToUrlAfterLogin", "$q", "metricsFactory", function(sessionStorageFactory, $location, redirectToUrlAfterLogin, $q, metricsFactory) {  
     var sessionInjector = {
         request: function(config) {
-            var metrics_info = {};
+            var metricInfo = {};
             if (sessionStorageFactory.hasSessionToken()){
-                metrics_info.token = sessionStorageFactory.getSessionToken();
-                metrics_info.username = sessionStorageFactory.getUsername();
+                metricInfo.token = sessionStorageFactory.getSessionToken();
+                metricInfo.username = sessionStorageFactory.getUsername();
                 config.headers.authorization = "Bearer " + sessionStorageFactory.getSessionToken();
             }
-            metrics_info.url = config.url;
-            metricsFactory.sendUrlRequestEvent(metrics_info);
+            metricInfo.url = config.url;
+            metricInfo.type = "web_navigation";
+            metricsFactory.sendEvent(metricInfo);
 
             return config;
         },
