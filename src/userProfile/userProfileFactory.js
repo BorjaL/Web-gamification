@@ -1,10 +1,10 @@
-user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorageFactory", function ($http, $q, sessionStorageFactory){
+user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorageFactory", "app_config", function ($http, $q, sessionStorageFactory, app_config){
 
 	var service = {};
 
 	service.userInfo = function(username, callback){
 
-		$http.get('http://gamisfan.com:3023/players/' + username)
+		$http.get(app_config.api_url + '/players/' + username)
 			.success(function(data) {
 				if (!data.is_active){
 					sessionStorageFactory.removeSessionInfo();
@@ -26,7 +26,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorag
 
 		var def = $q.defer();
 
-		$http.get('http://gamisfan.com:3023/' + username + '/games')
+		$http.get(app_config.api_url + '/' + username + '/games')
 			.success(function(data) {
 				def.resolve(data);
 			})
