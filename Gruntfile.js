@@ -91,6 +91,15 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		ngconstant: {
+			options: {
+				name: 'config',
+				dest: 'src/config/config.js'
+			},
+			dist: {
+				constants: 'config.json'
+			}
+		},
 
 		clean: ["app/"]
 	});
@@ -98,7 +107,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
-	grunt.registerTask('build', ['min', 'copy', 'sass']);
+	grunt.registerTask('build', ['ngconstant','min', 'copy', 'sass']);
 
 	grunt.registerTask('default', ['build', 'connect', 'watch']);
 };

@@ -1,12 +1,13 @@
 var app = angular.module('app', 
 						['ngRoute',
-						 'login', 
-						 'register', 
-						 'userProfile',
-						 'header',
-             'game',
-             'home',
-             'metrics']);
+            'config',
+            'login', 
+            'register',
+            'userProfile',
+            'header',
+            'game',
+            'home',
+            'metrics']);
 
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
