@@ -68,9 +68,57 @@ describe('Login', function () {
       expect($location.path()).to.equal('/ToniStark');
     });
 
-    it('a user can not login because of miss some field', function(){
+    it('a user can not login because the api rejects the credentials', function(){
+
+      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond(401);
+
+      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
+        expect(_message).to.equal('Wrong credentials');
+        expect(error).to.be.null;
+      });
+
+      httpBackend.flush();
+    });
+
+    it('a user can not login because the api gives an unexpected error', function(){
+
+      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond(500);
+
+      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
+        expect(error).to.equal('Ups! Something goes wrong...');
+      });
+      
+      httpBackend.flush();
+    });
+
+    it('a user can not login because the api does not give token', function(){
+
+      var message = "There is no token, deal with it!";
+
+      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond({"message": message});
+
+      loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
+        expect(_message).to.equal("There is no token, deal with it!");
+        expect(error).to.be.null;
+      });
+      
+      httpBackend.flush();
+    });
+
+    it('a user can not login because of miss username field', function(){
       //given:
       var data = {username: null, password: "S3Cr3T"};
+
+      //when:
+      var must_to_be_false = loginFactory.validate_params(data);
+
+      //then
+      expect(must_to_be_false).to.be.false;
+    });
+
+    it('a user can not login because of miss password field', function(){
+      //given:
+      var data = {username: "ToniStark", password: null};
 
       //when:
       var must_to_be_false = loginFactory.validate_params(data);

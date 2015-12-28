@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			all: {
 				files: ['src/**/*.*', 'css/**/*.*', 'videos/**/*.*'],
-				tasks: ['build']
+				tasks: ['develop']
 			}
 		},
 	    karma: {
@@ -108,6 +108,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('hint', ['jshint']);
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
 	grunt.registerTask('build', ['ngconstant','min', 'copy', 'sass']);
+	grunt.registerTask('develop', ['test', 'build']);
 
 	grunt.registerTask('default', ['build', 'connect', 'watch']);
 };
