@@ -10,7 +10,7 @@ login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$locatio
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);
 					sessionStorageFactory.setUsername(data.username);
-					$location.path(redirectToUrlAfterLogin.url).replace();
+					$location.path(redirectToUrlAfterLogin.url+data.username).replace();
 				}
 				else{
 					return callback(null, data.message);

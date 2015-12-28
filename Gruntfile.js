@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 		concat: {
 			all_my_files: {
 				files: {
-					'app/script/app.js': ['src/**/*.js', '!src/**/*Spec.js'],
+					'app/script/app.js': ['src/**/*.js', '!src/**/*Spec.js', '!src/**/*.test.js'],
 				},
 			},
 		},

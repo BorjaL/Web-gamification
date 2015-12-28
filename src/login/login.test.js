@@ -1,13 +1,15 @@
-describe('Login ', function () {
+describe('Login', function () {
 
-  beforeEach(module('login'));
+  beforeEach(module('login', function ($provide) {
+    $provide.value('redirectToUrlAfterLogin', { url: '/' });
+    $provide.constant('app_config', {api_url:'http://gamisfan.com:3023',send_to_keen:false,keen_data:{projectId:'',writeKey:''}});
+  }));
 
   describe('Controller', function () {
 
     var loginCtrl, loginFactoryMock, scope;
 
     beforeEach(inject(function ($controller, $rootScope) {
-      //given:
       loginFactoryMock = {login: sinon.stub().callsArgWith(1, "error" )};
       scope = $rootScope.$new();
       loginCtrl = $controller('loginCtrl', {
@@ -22,7 +24,6 @@ describe('Login ', function () {
     });
 
     it('login data should be empty and show error is false after an error', function (){
-      //when:
       scope.logIn({});
       
       expect(scope.login_data.username).to.equal('');
@@ -31,23 +32,19 @@ describe('Login ', function () {
     });
 
     it('login calls to the login factory', function(){
-      //when:
       scope.logIn({});
 
-      //then:
-      loginFactoryMock.login.should.have.been.calledOnce 
+      loginFactoryMock.login.should.have.been.calledOnce;
     });
   });
 
 
   describe('Factory', function () {
 
-    var httpBackend, loginFactoryd, location, sessionStorageFactory;
-
-    beforeEach(inject(function ($httpBackend, $location, _loginFactory_, _sessionStorageFactory_) {
+    beforeEach(inject(function ($httpBackend, _$location_, _loginFactory_, _sessionStorageFactory_) {
       loginFactory = _loginFactory_;
       httpBackend = $httpBackend;
-      location = $location;
+      $location = _$location_;
       sessionStorageFactory = _sessionStorageFactory_;
     }));
 
@@ -68,7 +65,7 @@ describe('Login ', function () {
 
       //then:
       expect(sessionStorageFactory.getSessionToken()).to.equal('token');
-      expect(location.path()).to.equal('/ToniStark');
+      expect($location.path()).to.equal('/ToniStark');
     });
 
     it('a user can not login because of miss some field', function(){
