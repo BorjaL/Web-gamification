@@ -2,3 +2,5 @@ node_modules
 lib
 app
 .sass-cache
+src/config
+config.json

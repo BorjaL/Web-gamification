@@ -1,16 +1,16 @@
-login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$location", "redirectToUrlAfterLogin", function ($http, sessionStorageFactory, $location, redirectToUrlAfterLogin){
+login_module.factory('loginFactory',["$http", "sessionStorageFactory", "$location", "redirectToUrlAfterLogin", "app_config", function ($http, sessionStorageFactory, $location, redirectToUrlAfterLogin, app_config){
 	var service = {};
 
 	service.login = function(login_data, callback){
 		if (!service.validate_params(login_data)){
 			return callback(null, "Wrong credentials");
 		}
-		$http.post('http://gamisfan.com:3023/players/login.json', login_data)
+		$http.post(app_config.api_url + '/players/login.json', login_data)
 			.success(function(data) {
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);
 					sessionStorageFactory.setUsername(data.username);
-					$location.path(redirectToUrlAfterLogin.url).replace();
+					$location.path(redirectToUrlAfterLogin.url+data.username).replace();
 				}
 				else{
 					return callback(null, data.message);

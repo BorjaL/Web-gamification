@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - '0.10.33'
+before_script:
+  - 'npm install -g bower grunt-cli'
+  - 'npm install' # install npm packages
+  - 'bower install' # install bower packages
+
+after_script:
+  - 'grunt test' # or other command for build, run tests, etc

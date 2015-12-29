@@ -42,7 +42,28 @@ video#homeBackground {
 	-webkit-filter: saturate(1.9);
 }
 
-#videoBackground {
+#mobileVideoBackground {
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-filter: saturate(1.9);
+	background: url(../img/poster.png) no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-device-width: 767px) {
+    #homeBackground {
+        visibility: hidden;
+    }
+    #mobileVideoBackground {
+        visibility: visible;
+    }
+}
+
+#videoFilter {
 	position: fixed;
 	overflow: hidden;
 	position: fixed;
@@ -53,5 +74,9 @@ video#homeBackground {
 	z-index: -99;
 	outline: 0;
 	background-color: black;
-	opacity: 0.3;
+	opacity: 0.5;
+}
+
+video::-webkit-media-controls {
+    display:none !important;
 }

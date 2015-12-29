@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/BorjaL/Web-gamification.svg?branch=develop)](https://travis-ci.org/BorjaL/Web-gamification)

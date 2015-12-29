@@ -1,4 +1,4 @@
-register_module.factory('registerFactory', ["$http", "sessionStorageFactory", "$location", function ($http, sessionStorageFactory, $location){
+register_module.factory('registerFactory', ["$http", "sessionStorageFactory", "$location", "app_config", function ($http, sessionStorageFactory, $location, app_config){
 
 	var service = {};
 
@@ -7,7 +7,7 @@ register_module.factory('registerFactory', ["$http", "sessionStorageFactory", "$
 		if (!service.validate_params(register_data)){
 			return callback(null, "Wrong fields");
 		}
-		$http.post('http://gamisfan.com:3023/players.json', register_data)
+		$http.post(app_config.api_url + '/players.json', register_data)
 			.success(function(data) {
 				if (data.token){
 					sessionStorageFactory.setSessionToken(data.token);

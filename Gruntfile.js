@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			all: {
 				files: ['src/**/*.*', 'css/**/*.*', 'videos/**/*.*'],
-				tasks: ['build']
+				tasks: ['develop']
 			}
 		},
 	    karma: {
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 		concat: {
 			all_my_files: {
 				files: {
-					'app/script/app.js': ['src/**/*.js', '!src/**/*Spec.js'],
+					'app/script/app.js': ['src/**/*.js', '!src/**/*Spec.js', '!src/**/*.test.js'],
 				},
 			},
 		},
@@ -60,7 +60,8 @@ module.exports = function(grunt) {
 			lib: {
 				files: [
 					{src: 'lib/angular/angular.min.js*', dest: 'app/script/'},
-					{src: 'lib/angular-route/angular-route.min.js*', dest: 'app/script/'}
+					{src: 'lib/angular-route/angular-route.min.js*', dest: 'app/script/'},
+					{src: 'lib/keen-js/dist/keen.min.js*', dest: 'app/script/'}
 				]
 			},
 			html: {
@@ -71,6 +72,10 @@ module.exports = function(grunt) {
 			},
 			videos: {
 				src: 'videos/*',
+				dest: 'app/',
+			},
+			images: {
+				src: 'img/*',
 				dest: 'app/',
 			},
 			miscelania: {
@@ -86,6 +91,15 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		ngconstant: {
+			options: {
+				name: 'config',
+				dest: 'src/config/config.js'
+			},
+			dist: {
+				constants: 'config.json'
+			}
+		},
 
 		clean: ["app/"]
 	});
@@ -93,7 +107,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('hint', ['jshint']);
 	grunt.registerTask('min', ['jshint', 'clean', 'concat', 'uglify']);
-	grunt.registerTask('build', ['min', 'copy', 'sass']);
+	grunt.registerTask('build', ['ngconstant','min', 'copy', 'sass']);
+	grunt.registerTask('develop', ['test', 'build']);
 
 	grunt.registerTask('default', ['build', 'connect', 'watch']);
 };

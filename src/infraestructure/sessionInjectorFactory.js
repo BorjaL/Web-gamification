@@ -1,9 +1,16 @@
-session_module.factory('sessionInjector', ["sessionStorageFactory", "$location", "redirectToUrlAfterLogin", "$q", function(sessionStorageFactory, $location, redirectToUrlAfterLogin, $q) {  
+session_module.factory('sessionInjector', ["sessionStorageFactory", "$location", "redirectToUrlAfterLogin", "$q", "metricsFactory", function(sessionStorageFactory, $location, redirectToUrlAfterLogin, $q, metricsFactory) {  
     var sessionInjector = {
         request: function(config) {
+            var metricInfo = {};
             if (sessionStorageFactory.hasSessionToken()){
-               config.headers.authorization = "Bearer " + sessionStorageFactory.getSessionToken();
+                metricInfo.token = sessionStorageFactory.getSessionToken();
+                metricInfo.username = sessionStorageFactory.getUsername();
+                config.headers.authorization = "Bearer " + sessionStorageFactory.getSessionToken();
             }
+            metricInfo.url = config.url;
+            metricInfo.type = "web_navigation";
+            metricsFactory.sendEvent(metricInfo);
+
             return config;
         },
         responseError: function(rejection) {
