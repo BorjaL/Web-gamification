@@ -6,9 +6,7 @@ user_profile_module.factory('userProfileFactory', ["$http", "$q", "sessionStorag
 
 		$http.get(app_config.api_url + '/players/' + username)
 			.success(function(data) {
-				if (!data.is_active){
-					sessionStorageFactory.removeSessionInfo();
-				}
+
 				callback(null, data.player, data.is_owner);
 			})
 			.error(function(error, status) {
