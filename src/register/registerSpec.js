@@ -21,7 +21,7 @@ describe('Register Functionality', function () {
       scope.register({});
 
       //then:
-      registerFactoryMock.register.should.have.been.calledOnce 
+      registerFactoryMock.register.should.have.been.calledOnce
     });
 
     it('register data should be empty and show error is false', function (){
@@ -61,7 +61,7 @@ describe('Register Functionality', function () {
     it('register a user redirect me to the user page', function(){
 
       //given:
-      httpBackend.expectPOST('http://gamisfan.com:3023/players.json').respond({token: 'token', username: 'ToniStark'});
+      httpBackend.expectPOST('https://api.gamisfan.com/players.json').respond({token: 'token', username: 'ToniStark'});
 
       //when:
       registerFactory.register({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -77,7 +77,7 @@ describe('Register Functionality', function () {
 
       //given:
       var result = "";
-      httpBackend.expectPOST('http://gamisfan.com:3023/players.json')
+      httpBackend.expectPOST('https://api.gamisfan.com/players.json')
                  .respond(function (method, url, data, headers) {
                     return [409, 'username already exists'];
                  });

@@ -62,7 +62,7 @@ describe('User profile ', function () {
     it('the user info is given from the server', function(){
       //given:
       sessionStorageFactory.setSessionToken('token');
-      httpBackend.expectGET('http://gamisfan.com:3023/players/username').respond({player: {username: 'username'}, is_owner: false});
+      httpBackend.expectGET('https://api.gamisfan.com/players/username').respond({player: {username: 'username'}, is_owner: false});
 
       //when:
       userProfileFactory.userInfo("username", function(error, user_info, is_owner){
@@ -76,7 +76,7 @@ describe('User profile ', function () {
 
     it('server gives us an error', function(){
       //given:
-      httpBackend.expectGET('http://gamisfan.com:3023/players/username').respond(500);
+      httpBackend.expectGET('https://api.gamisfan.com/players/username').respond(500);
 
       //when:
       userProfileFactory.userInfo("username", function(error, user_info, is_owner){
@@ -91,7 +91,7 @@ describe('User profile ', function () {
     it('show different message when visiting other player profile', function(){
       //given:
       sessionStorageFactory.setSessionToken('token');
-      httpBackend.expectGET('http://gamisfan.com:3023/players/username').respond(401);
+      httpBackend.expectGET('https://api.gamisfan.com/players/username').respond(401);
 
       //when:
       var user_info = userProfileFactory.userInfo("username", function(error, user_info, is_owner){
@@ -102,6 +102,6 @@ describe('User profile ', function () {
       });
       httpBackend.flush();
     });
-    
+
   });
 });

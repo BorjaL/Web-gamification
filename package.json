@@ -2,6 +2,7 @@
   "name": "Web-gamification",
   "version": "0.0.1",
   "description": "web app for the gamification platform",
+  "private": true,
   "author": {
     "name": "Borja Fernandez",
     "email": "borja.fpillado@gmail.com"
