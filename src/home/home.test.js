@@ -1,7 +1,7 @@
 describe('Home', function () {
 
 	beforeEach(module('home', function ($provide) {
-		$provide.constant('app_config', {api_url:'http://gamisfan.com:3023',send_to_keen:false,keen_data:{projectId:'',writeKey:''}});
+		$provide.constant('app_config', {api_url:'https://api.gamisfan.com',send_to_keen:false,keen_data:{projectId:'',writeKey:''}});
 	}));
 
 	describe('Controller', function() {
@@ -72,7 +72,7 @@ describe('Home', function () {
 
 		it('the service sends lead info an the api responds succesfully', function(){
 
-			httpBackend.expectPOST('http://gamisfan.com:3023/leads').respond(true);
+			httpBackend.expectPOST('https://api.gamisfan.com/leads').respond(true);
 
 			var result, promise = homeFactory.sendNewLead("cool.name@fancyCompany.com");
 
@@ -87,7 +87,7 @@ describe('Home', function () {
 
 		it('the service sends lead info an the api responds with error', function(){
 
-			httpBackend.expectPOST('http://gamisfan.com:3023/leads').respond(500, "Error message");
+			httpBackend.expectPOST('https://api.gamisfan.com/leads').respond(500, "Error message");
 
 			var result, promise = homeFactory.sendNewLead("cool.name@fancyCompany.com");
 

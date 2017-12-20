@@ -2,7 +2,7 @@ describe('Login', function () {
 
   beforeEach(module('login', function ($provide) {
     $provide.value('redirectToUrlAfterLogin', { url: '/' });
-    $provide.constant('app_config', {api_url:'http://gamisfan.com:3023',send_to_keen:false,keen_data:{projectId:'',writeKey:''}});
+    $provide.constant('app_config', {api_url:'https://api.gamisfan.com',send_to_keen:false,keen_data:{projectId:'',writeKey:''}});
   }));
 
   describe('Controller', function () {
@@ -25,7 +25,7 @@ describe('Login', function () {
 
     it('login data should be empty and show error is false after an error', function (){
       scope.logIn({});
-      
+
       expect(scope.login_data.username).to.equal('');
       expect(scope.login_data.password).to.equal('');
       expect(scope.show_error).to.equal(true);
@@ -54,9 +54,9 @@ describe('Login', function () {
     });
 
     it('login function save the token and redirect to the user page', function(){
-      
+
       //given:
-      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond({token: 'token', username: "ToniStark"});
+      httpBackend.expectPOST('https://api.gamisfan.com/players/login.json').respond({token: 'token', username: "ToniStark"});
 
       //when:
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){});
@@ -70,7 +70,7 @@ describe('Login', function () {
 
     it('a user can not login because the api rejects the credentials', function(){
 
-      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond(401);
+      httpBackend.expectPOST('https://api.gamisfan.com/players/login.json').respond(401);
 
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
         expect(_message).to.equal('Wrong credentials');
@@ -82,12 +82,12 @@ describe('Login', function () {
 
     it('a user can not login because the api gives an unexpected error', function(){
 
-      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond(500);
+      httpBackend.expectPOST('https://api.gamisfan.com/players/login.json').respond(500);
 
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
         expect(error).to.equal('Ups! Something goes wrong...');
       });
-      
+
       httpBackend.flush();
     });
 
@@ -95,13 +95,13 @@ describe('Login', function () {
 
       var message = "There is no token, deal with it!";
 
-      httpBackend.expectPOST('http://gamisfan.com:3023/players/login.json').respond({"message": message});
+      httpBackend.expectPOST('https://api.gamisfan.com/players/login.json').respond({"message": message});
 
       loginFactory.login({username: 'ToniStark', password: 'S3Cr3T'}, function(error, _message){
         expect(_message).to.equal("There is no token, deal with it!");
         expect(error).to.be.null;
       });
-      
+
       httpBackend.flush();
     });
 
